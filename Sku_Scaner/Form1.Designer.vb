@@ -59,7 +59,7 @@ Partial Class Form1
         '열기EzAdminToolStripMenuItem
         '
         Me.열기EzAdminToolStripMenuItem.Name = "열기EzAdminToolStripMenuItem"
-        Me.열기EzAdminToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.열기EzAdminToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.열기EzAdminToolStripMenuItem.Text = "열기(EzAdmin)"
         '
         '열기ShopeeToolStripMenuItem

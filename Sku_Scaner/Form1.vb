@@ -9,6 +9,18 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial
 
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        ToolStripStatusLabel1.Text = DateTime.Now.ToString("HH:mm:ss")
+    End Sub
+
+    Private Sub 열기EzAdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 열기EzAdminToolStripMenuItem.Click
+        OpenFile()
+
+    End Sub
+
+    Private Sub scan_start()
         ' 엑셀 파일 경로
         Dim fileInfo As New FileInfo(filePath)
 
@@ -70,9 +82,41 @@ Public Class Form1
             column.Width = -2
         Next
     End Sub
+    Private Sub OpenFile()
+        ' 파일을 열기 위한 OpenFileDialog 생성
+        Dim openFileDialog As New OpenFileDialog()
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        ToolStripStatusLabel1.Text = DateTime.Now.ToString("HH:mm:ss")
+        ' 사용자가 파일을 선택하고 확인을 누르면
+        If openFileDialog.ShowDialog() = DialogResult.OK Then
+            ' 선택된 파일의 경로
+            Dim selectedFilePath As String = openFileDialog.FileName
 
+            ' 파일의 확장자를 확인하여 처리
+            If Path.GetExtension(selectedFilePath).ToLower() = ".xls" Then
+                ' XLS 파일을 XLSX 파일로 변환하여 처리
+                Dim convertedFilePath As String = ConvertXlsToXlsx(selectedFilePath)
+                'OpenAndProcessFile(convertedFilePath)
+            Else
+                ' 그 외의 경우에는 그대로 파일을 처리
+                'OpenAndProcessFile(selectedFilePath)
+            End If
+        End If
+    End Sub
+    Private Function ConvertXlsToXlsx(filePath As String) As String
+        ' 변환된 파일의 경로
+        Dim convertedFilePath As String = Path.ChangeExtension(filePath, ".xlsx")
+
+        ' XLS 파일을 XLSX 파일로 변환하는 코드
+        ' 여기에 변환하는 코드를 작성해야 합니다.
+
+        ' 변환된 파일의 경로 반환
+        MsgBox(convertedFilePath)
+        Return convertedFilePath
+    End Function
+
+    Private Sub Textbox1_KeyUp(sender As Object, e As KeyEventArgs) Handles Textbox1.KeyUp
+        If e.KeyCode = 13 Then
+            scan_start()
+        End If
     End Sub
 End Class
