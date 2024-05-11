@@ -120,40 +120,13 @@
   <metadata name="MenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>134, 17</value>
   </metadata>
-  <metadata name="NotifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>251, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="NotifyIcon1.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA
-        AABCYhBjQmIQDkJiEABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQAEJi
-        EAD///8AQmIQ/0JiEKZCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQVUJiEERCYhAAQmIQAEJi
-        EABCYhAA////AEJiEIdCYhD/QmIQLUJiEABCYhAAQmIQAEJiEABCYhAAQmIQYUJiENVCYhDUQmIQHUJi
-        EABCYhAAQmIQAP///wBCYhAAQmIQ1UJiEPRCYhAAQmIQAEJiEABCYhAAQmIQAEJiEMVCYhCDQmIQkkJi
-        EBpCYhAAQmIQAEJiEAD///8AQmIQAEJiEAxCYhD/QmIQe0JiEABCYhAAQmIQAEJiEABCYhDJQmIQ6UJi
-        EBJCYhAAQmIQAEJiEABCYhAA////AEJiEABCYhAAQmIQZkJiEP9CYhAOQmIQAEJiEBFCYhBwQmIQxkJi
-        EMBCYhBCQmIQTkJiEABCYhAAQmIQAP///wBCYhAAQmIQAEJiEABCYhDmQmIQlUJiEEdCYhCtQmIQVkJi
-        EEpCYhD/QmIQl0JiEH9CYhCwQmIQFUJiEAD///8AQmIQAEJiEABCYhAAQmIQSkJiEP9CYhB0QmIQGEJi
-        EABCYhCTQmIQv0JiELJCYhBIQmIQlkJiEJ9CYhAA////AEJiEABCYhAAQmIQEkJiEI9CYhDrQmIQGEJi
-        EABCYhBWQmIQbkJiEFxCYhD/QmIQuEJiEFNCYhDRQmIQPf///wBCYhAAQmIQAEJiELZCYhBXQmIQq0Ji
-        ED5CYhAAQmIQJEJiEJtCYhBmQmIQ0kJiEOVCYhB3QmIQz0JiEHz///8AQmIQAEJiEABCYhClQmIQwkJi
-        EI1CYhADQmIQAEJiEABCYhCbQmIQ3UJiEGdCYhD/QmIQw0JiELBCYhCQ////AEJiEABCYhAAQmIQAEJi
-        EEJCYhAAQmIQAEJiEABCYhAAQmIQE0JiEL5CYhDUQmIQhkJiEPpCYhDDQmIQlf///wBCYhAAQmIQAEJi
-        EABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAGQmIQrEJiENpCYhDyQmIQwUJiEIb///8AQmIQAEJi
-        EABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhBJQmIQwkJiEPhCYhCg////AEJi
-        EABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEA5CYhD/QmIQy///
-        /wBCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQAEJiEABCYhAAQmIQdUJi
-        EI3///8AP/8AAD+fAAAfDwAAnw8AAI8fAADEDwAA4AMAAOEDAADCAQAAwgEAAMMBAADvAQAA/4EAAP/h
-        AAD/8QAA//kAAA==
-</value>
-  </data>
   <metadata name="Timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>487, 17</value>
   </metadata>
   <metadata name="StatusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>578, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA

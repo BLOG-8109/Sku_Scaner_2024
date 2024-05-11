@@ -31,12 +31,13 @@ Partial Class Form1
         Me.열기Qoo10ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.Textbox1 = New System.Windows.Forms.TextBox()
-        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -79,29 +80,23 @@ Partial Class Form1
         '
         Me.ListView1.Activation = System.Windows.Forms.ItemActivation.OneClick
         Me.ListView1.CheckBoxes = True
+        Me.ListView1.FullRowSelect = True
         Me.ListView1.GridLines = True
         Me.ListView1.HideSelection = False
-        Me.ListView1.HoverSelection = True
         Me.ListView1.Location = New System.Drawing.Point(12, 89)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(776, 349)
+        Me.ListView1.Size = New System.Drawing.Size(776, 336)
         Me.ListView1.TabIndex = 1
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
         '
         'Textbox1
         '
-        Me.Textbox1.Location = New System.Drawing.Point(12, 27)
+        Me.Textbox1.Location = New System.Drawing.Point(70, 35)
         Me.Textbox1.Name = "Textbox1"
         Me.Textbox1.Size = New System.Drawing.Size(629, 21)
         Me.Textbox1.TabIndex = 0
         Me.Textbox1.Text = "567742313250"
-        '
-        'NotifyIcon1
-        '
-        Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
-        Me.NotifyIcon1.Text = "Isntree"
-        Me.NotifyIcon1.Visible = True
         '
         'Timer1
         '
@@ -131,16 +126,36 @@ Partial Class Form1
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(12, 54)
+        Me.TextBox2.Location = New System.Drawing.Point(70, 62)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(629, 21)
         Me.TextBox2.TabIndex = 2
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(11, 38)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(53, 12)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "송장번호"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(22, 65)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(41, 12)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "바코드"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Textbox1)
@@ -166,10 +181,11 @@ Partial Class Form1
     Friend WithEvents 열기Qoo10ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ListView1 As ListView
     Friend WithEvents Textbox1 As TextBox
-    Friend WithEvents NotifyIcon1 As NotifyIcon
     Friend WithEvents Timer1 As Timer
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
     Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
 End Class
