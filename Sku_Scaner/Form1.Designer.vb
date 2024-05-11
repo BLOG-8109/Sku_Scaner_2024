@@ -36,6 +36,7 @@ Partial Class Form1
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -59,7 +60,7 @@ Partial Class Form1
         '열기EzAdminToolStripMenuItem
         '
         Me.열기EzAdminToolStripMenuItem.Name = "열기EzAdminToolStripMenuItem"
-        Me.열기EzAdminToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.열기EzAdminToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.열기EzAdminToolStripMenuItem.Text = "열기(EzAdmin)"
         '
         '열기ShopeeToolStripMenuItem
@@ -93,7 +94,7 @@ Partial Class Form1
         Me.Textbox1.Location = New System.Drawing.Point(12, 27)
         Me.Textbox1.Name = "Textbox1"
         Me.Textbox1.Size = New System.Drawing.Size(629, 21)
-        Me.Textbox1.TabIndex = 2
+        Me.Textbox1.TabIndex = 0
         Me.Textbox1.Text = "567742313250"
         '
         'NotifyIcon1
@@ -104,7 +105,6 @@ Partial Class Form1
         '
         'Timer1
         '
-        Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
         'StatusStrip1
@@ -129,12 +129,20 @@ Partial Class Form1
         Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
         Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
         '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(12, 54)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(629, 21)
+        Me.TextBox2.TabIndex = 2
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Textbox1)
         Me.Controls.Add(Me.ListView1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -163,4 +171,5 @@ Partial Class Form1
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
+    Friend WithEvents TextBox2 As TextBox
 End Class
