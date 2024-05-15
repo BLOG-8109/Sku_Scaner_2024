@@ -83,15 +83,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _10108R() As String
-            Get
-                Return ResourceManager.GetString("10108R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809686389872과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _10111R() As String
@@ -164,15 +155,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _10121R() As String
-            Get
-                Return ResourceManager.GetString("10121R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809800941030과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _10122R() As String
@@ -223,15 +205,6 @@ Namespace My.Resources
         Public Shared ReadOnly Property _10206R() As String
             Get
                 Return ResourceManager.GetString("10206R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _10207R() As String
-            Get
-                Return ResourceManager.GetString("10207R", resourceCulture)
             End Get
         End Property
         
@@ -389,24 +362,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _11205R() As String
-            Get
-                Return ResourceManager.GetString("11205R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _11206R() As String
-            Get
-                Return ResourceManager.GetString("11206R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809800940804과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _11207R() As String
@@ -425,29 +380,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _11212R() As String
-            Get
-                Return ResourceManager.GetString("11212R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809800941061과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _11214R() As String
             Get
                 Return ResourceManager.GetString("11214R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _11215R() As String
-            Get
-                Return ResourceManager.GetString("11215R", resourceCulture)
             End Get
         End Property
         
@@ -533,15 +470,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20108R() As String
-            Get
-                Return ResourceManager.GetString("20108R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809540517557과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _20109R() As String
@@ -560,38 +488,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20111R() As String
-            Get
-                Return ResourceManager.GetString("20111R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20113R() As String
-            Get
-                Return ResourceManager.GetString("20113R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809686384228과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _20114R() As String
             Get
                 Return ResourceManager.GetString("20114R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20115R() As String
-            Get
-                Return ResourceManager.GetString("20115R", resourceCulture)
             End Get
         End Property
         
@@ -610,24 +511,6 @@ Namespace My.Resources
         Public Shared ReadOnly Property _20117R() As String
             Get
                 Return ResourceManager.GetString("20117R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20118R() As String
-            Get
-                Return ResourceManager.GetString("20118R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20119R() As String
-            Get
-                Return ResourceManager.GetString("20119R", resourceCulture)
             End Get
         End Property
         
@@ -695,24 +578,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20131R() As String
-            Get
-                Return ResourceManager.GetString("20131R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20132R() As String
-            Get
-                Return ResourceManager.GetString("20132R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809800941252과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _20133R() As String
@@ -727,15 +592,6 @@ Namespace My.Resources
         Public Shared ReadOnly Property _20202R() As String
             Get
                 Return ResourceManager.GetString("20202R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20203R() As String
-            Get
-                Return ResourceManager.GetString("20203R", resourceCulture)
             End Get
         End Property
         
@@ -817,15 +673,6 @@ Namespace My.Resources
         Public Shared ReadOnly Property _20310R() As String
             Get
                 Return ResourceManager.GetString("20310R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20311R() As String
-            Get
-                Return ResourceManager.GetString("20311R", resourceCulture)
             End Get
         End Property
         
@@ -965,29 +812,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20802R() As String
-            Get
-                Return ResourceManager.GetString("20802R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8806135245765과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _20803R() As String
             Get
                 Return ResourceManager.GetString("20803R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _20804R() As String
-            Get
-                Return ResourceManager.GetString("20804R", resourceCulture)
             End Get
         End Property
         
@@ -1127,15 +956,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _21014R() As String
-            Get
-                Return ResourceManager.GetString("21014R", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809800941221과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _21017R() As String
@@ -1204,15 +1024,6 @@ Namespace My.Resources
         Public Shared ReadOnly Property _21204RR() As String
             Get
                 Return ResourceManager.GetString("21204RR", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _21205R() As String
-            Get
-                Return ResourceManager.GetString("21205R", resourceCulture)
             End Get
         End Property
         
@@ -1289,56 +1100,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _30314() As String
-            Get
-                Return ResourceManager.GetString("30314", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _30315() As String
-            Get
-                Return ResourceManager.GetString("30315", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _30317() As String
-            Get
-                Return ResourceManager.GetString("30317", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809800940620과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _30318() As String
             Get
                 Return ResourceManager.GetString("30318", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _30319() As String
-            Get
-                Return ResourceManager.GetString("30319", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _30320() As String
-            Get
-                Return ResourceManager.GetString("30320", resourceCulture)
             End Get
         End Property
         
@@ -1361,24 +1127,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _30325() As String
-            Get
-                Return ResourceManager.GetString("30325", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _30326() As String
-            Get
-                Return ResourceManager.GetString("30326", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  8809800941016과(와) 유사한 지역화된 문자열을 찾습니다.
         '''</summary>
         Public Shared ReadOnly Property _30327() As String
@@ -1393,15 +1141,6 @@ Namespace My.Resources
         Public Shared ReadOnly Property _30328() As String
             Get
                 Return ResourceManager.GetString("30328", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Public Shared ReadOnly Property _30330() As String
-            Get
-                Return ResourceManager.GetString("30330", resourceCulture)
             End Get
         End Property
         

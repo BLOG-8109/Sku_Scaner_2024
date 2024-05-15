@@ -4,7 +4,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Module GlobalKeyboardHook
     Private Const WH_KEYBOARD_LL As Integer = 13
     Private Const WM_KEYDOWN As Integer = &H100
-    Private Const VK_A As Integer = &H41 ' A 키의 가상 키 코드
+    Private Const VK_C As Integer = &H43 ' A 키의 가상 키 코드
 
     ' Windows API 함수 선언
     <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
@@ -59,7 +59,7 @@ Module GlobalKeyboardHook
     Private Function HookCallback(ByVal nCode As Integer, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As IntPtr
         If nCode >= 0 AndAlso wParam = CType(WM_KEYDOWN, IntPtr) Then
             Dim vkCode As Integer = Marshal.ReadInt32(lParam)
-            If vkCode = VK_A AndAlso My.Computer.Keyboard.CtrlKeyDown Then
+            If vkCode = VK_C AndAlso My.Computer.Keyboard.CtrlKeyDown Then
                 ' 현재 프로세스가 활성 창인지 확인
                 Dim foregroundHwnd As IntPtr = GetForegroundWindow()
                 Dim foregroundProcessId As Integer = 0
@@ -67,7 +67,7 @@ Module GlobalKeyboardHook
 
                 If foregroundProcessId = Process.GetCurrentProcess().Id Then
                     ' 활성 창이 현재 프로세스일 때만 작업 수행
-                    'MessageBox.Show("Ctrl + A가 눌렸습니다.")
+                    'MessageBox.Show("Ctrl + C가 눌렸습니다.")
 
                     Form1.ListView1.Columns.Clear()
                     Form1.ListView1.Items.Clear()

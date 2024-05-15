@@ -38,13 +38,15 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.설정ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.바코드추가ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.파일ToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.파일ToolStripMenuItem, Me.설정ToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
@@ -149,6 +151,19 @@ Partial Class Form1
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "바코드"
         '
+        '설정ToolStripMenuItem
+        '
+        Me.설정ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.바코드추가ToolStripMenuItem})
+        Me.설정ToolStripMenuItem.Name = "설정ToolStripMenuItem"
+        Me.설정ToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
+        Me.설정ToolStripMenuItem.Text = "설정"
+        '
+        '바코드추가ToolStripMenuItem
+        '
+        Me.바코드추가ToolStripMenuItem.Name = "바코드추가ToolStripMenuItem"
+        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.바코드추가ToolStripMenuItem.Text = "바코드 추가"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -188,4 +203,6 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Private WithEvents ToolStripProgressBar1 As ToolStripProgressBar
+    Friend WithEvents 설정ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents 바코드추가ToolStripMenuItem As ToolStripMenuItem
 End Class

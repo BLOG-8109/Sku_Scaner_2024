@@ -423,9 +423,6 @@
   <data name="11208R" xml:space="preserve">
     <value>8809800940910</value>
   </data>
-  <data name="11208R" xml:space="preserve">
-    <value>8809800940910</value>
-  </data>
   <data name="10120R" xml:space="preserve">
     <value>8809800940941</value>
   </data>
@@ -482,92 +479,5 @@
   </data>
   <data name="20316R" xml:space="preserve">
     <value>8809800941290</value>
-  </data>
-  <data name="21205R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="21014R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20804R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20802R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20311R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20203R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20132R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20131R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20119R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20118R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20115R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20113R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20111R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="20108R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="11215R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="11212R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="11206R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="11205R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="10207R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="10121R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="10108R" xml:space="preserve">
-    <value />
-  </data>
-  <data name="30330" xml:space="preserve">
-    <value />
-  </data>
-  <data name="30326" xml:space="preserve">
-    <value />
-  </data>
-  <data name="30325" xml:space="preserve">
-    <value />
-  </data>
-  <data name="30320" xml:space="preserve">
-    <value />
-  </data>
-  <data name="30319" xml:space="preserve">
-    <value />
-  </data>
-  <data name="30317" xml:space="preserve">
-    <value />
-  </data>
-  <data name="30315" xml:space="preserve">
-    <value />
-  </data>
-  <data name="30314" xml:space="preserve">
-    <value />
   </data>
 </root>

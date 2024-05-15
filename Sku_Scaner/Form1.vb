@@ -5,6 +5,9 @@ Imports System.Media
 Imports System.Numerics
 Imports System.Resources
 Imports System.Reflection
+Imports System.Collections
+Imports Microsoft.VisualBasic
+
 
 
 Public Class Form1
@@ -16,6 +19,8 @@ Public Class Form1
     Private mp3Files As List(Of String)
     Private player As SoundPlayer
     Private resourceManager As ResourceManager
+
+    Dim Channel As Integer = 0
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial
@@ -36,22 +41,63 @@ Public Class Form1
     Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         StopGlobalKeyboardHook()
     End Sub
+
+    Private Sub AddResourceDataUsingInputBox(resxFilePath As String)
+        ' 사용자로부터 키와 값을 입력받음
+        Dim key As String = InputBox("연동코드 입력", "연동코드 입력")
+        Dim value As String = InputBox("바코드 입력", "바코드 입력")
+
+        ' 입력받은 키와 값이 유효한지 확인
+        If String.IsNullOrEmpty(key) OrElse String.IsNullOrEmpty(value) Then
+            MessageBox.Show("Key or value cannot be empty.")
+            Return
+        End If
+
+        ' ResXResourceWriter 객체 생성
+        Using writer As New ResXResourceWriter(resxFilePath)
+            ' 기존 리소스 데이터 불러오기
+            If System.IO.File.Exists(resxFilePath) Then
+                Using reader As New ResXResourceReader(resxFilePath)
+                    reader.UseResXDataNodes = True
+                    Dim node As DictionaryEntry
+                    For Each node In reader
+                        Dim resxNode As ResXDataNode = CType(node.Value, ResXDataNode)
+                        writer.AddResource(resxNode)  ' 기존 데이터를 새 writer에 추가
+                    Next
+                End Using
+            End If
+
+            ' 새로운 리소스 데이터 추가
+            writer.AddResource(key, value)
+
+            ' 리소스 파일에 변경사항 저장
+            writer.Generate()
+        End Using
+        MessageBox.Show("Resource added successfully!")
+    End Sub
+
     Private Sub play_wav(ByVal idx As Integer)
         player = New SoundPlayer(mp3Files(idx))
         player.Load()
         player.Play()
     End Sub
+    Private Sub OpenFileMenuItem_Click(sender As Object, e As EventArgs) _
+    Handles 열기EzAdminToolStripMenuItem.Click, 열기ShopeeToolStripMenuItem.Click, 열기Qoo10ToolStripMenuItem.Click
 
-    Private Sub 열기EzAdminToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 열기EzAdminToolStripMenuItem.Click
         OpenFile()
-    End Sub
-    Private Sub 열기ShopeeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 열기ShopeeToolStripMenuItem.Click
-        OpenFile()
+        ' sender를 ToolStripMenuItem으로 캐스팅하여 메뉴 아이템 참조
+        Dim menuItem As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
+        ' 클릭된 메뉴 아이템에 따라 Channel 설정
+        Select Case menuItem.Name
+            Case "열기EzAdminToolStripMenuItem"
+                Channel = 0
+            Case "열기ShopeeToolStripMenuItem"
+                Channel = 1
+            Case "열기Qoo10ToolStripMenuItem"
+                Channel = 2
+        End Select
     End Sub
 
-    Private Sub 열기Qoo10ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 열기Qoo10ToolStripMenuItem.Click
-        OpenFile()
-    End Sub
 
     Private Sub scan_start()
         ' 엑셀 파일 경로
@@ -338,25 +384,31 @@ Public Class Form1
     Private Sub Textbox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Textbox1.KeyPress
         Dim trimmedText As String = Textbox1.Text.Trim()
 
-        ' Enter 키를 누르고, Textbox1의 텍스트 길이가 공백 제거 후 12이면 scan_start 메서드 실행
+        ' Enter 키를 누르고, Textbox1의 텍스트 길이가 공백 제거 후 12 또는 15자리일 때 처리
         If e.KeyChar = Convert.ToChar(Keys.Enter) Then
-            If trimmedText.Length = 12 Or 15 Then '12자리 송장번호만 입력받기
+            ' 12자리 또는 15자리 송장번호만 입력받기
+            If trimmedText.Length = 12 Or trimmedText.Length = 15 Then
                 play_wav(0) ' 시작 wav
-                'scan_start()
-                shopee_start()
+                ' Channel 값에 따라 다른 시작 메서드 호출
+                Select Case Channel
+                    Case 0 ' EzAdmin
+                        scan_start()
+                    Case 1 ' Shopee
+                        shopee_start()
+                    Case 2 ' Qoo10
+                        'qoo10_start() ' 가정: Qoo10에 대한 처리 메서드가 존재한다고 가정
+                End Select
                 Textbox1.Enabled = False
                 TextBox2.Enabled = True
                 TextBox2.Focus()
-                e.Handled = True
             Else
                 play_wav(1) ' beep wav
-                e.Handled = True
                 Textbox1.Text = vbNullString
-
-
             End If
+            e.Handled = True
         End If
     End Sub
+
 
     Private Function AllItemsChecked() As Boolean
         For Each item As ListViewItem In ListView1.Items
@@ -400,4 +452,8 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub 바코드추가ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 바코드추가ToolStripMenuItem.Click
+        Dim resxPath As String = Application.StartupPath & "\barcode_data.resx"
+        AddResourceDataUsingInputBox(resxPath)
+    End Sub
 End Class
