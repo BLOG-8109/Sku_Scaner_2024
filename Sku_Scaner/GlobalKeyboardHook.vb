@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.InteropServices
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Module GlobalKeyboardHook
     Private Const WH_KEYBOARD_LL As Integer = 13
@@ -16,6 +17,14 @@ Module GlobalKeyboardHook
 
     <DllImport("user32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
     Private Function CallNextHookEx(ByVal hhk As IntPtr, ByVal nCode As Integer, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As IntPtr
+    End Function
+
+    <DllImport("user32.dll", CharSet:=CharSet.Auto)>
+    Private Function GetForegroundWindow() As IntPtr
+    End Function
+
+    <DllImport("user32.dll", CharSet:=CharSet.Auto)>
+    Private Function GetWindowThreadProcessId(ByVal hWnd As IntPtr, ByRef lpdwProcessId As Integer) As UInteger
     End Function
 
     <DllImport("kernel32.dll", CharSet:=CharSet.Auto, SetLastError:=True)>
@@ -50,9 +59,21 @@ Module GlobalKeyboardHook
     Private Function HookCallback(ByVal nCode As Integer, ByVal wParam As IntPtr, ByVal lParam As IntPtr) As IntPtr
         If nCode >= 0 AndAlso wParam = CType(WM_KEYDOWN, IntPtr) Then
             Dim vkCode As Integer = Marshal.ReadInt32(lParam)
-            If vkCode = VK_A AndAlso My.Computer.Keyboard.CtrlKeyDown Then ' Ctrl + A 체크
-                ' 여기에 원하는 동작을 넣으세요
-                MessageBox.Show("Ctrl + A가 눌렸습니다.")
+            If vkCode = VK_A AndAlso My.Computer.Keyboard.CtrlKeyDown Then
+                ' 현재 프로세스가 활성 창인지 확인
+                Dim foregroundHwnd As IntPtr = GetForegroundWindow()
+                Dim foregroundProcessId As Integer = 0
+                GetWindowThreadProcessId(foregroundHwnd, foregroundProcessId)
+
+                If foregroundProcessId = Process.GetCurrentProcess().Id Then
+                    ' 활성 창이 현재 프로세스일 때만 작업 수행
+                    'MessageBox.Show("Ctrl + A가 눌렸습니다.")
+
+                    Form1.ListView1.Columns.Clear()
+                    Form1.ListView1.Items.Clear()
+                    Form1.Textbox1.Enabled = True
+                    Form1.TextBox2.Enabled = False
+                End If
             End If
         End If
         Return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam)

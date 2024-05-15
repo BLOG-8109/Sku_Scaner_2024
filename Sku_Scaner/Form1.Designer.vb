@@ -104,10 +104,11 @@ Partial Class Form1
         '
         'StatusStrip1
         '
+        Me.StatusStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
+        Me.StatusStrip1.Location = New System.Drawing.Point(527, 428)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(273, 22)
         Me.StatusStrip1.SizingGrip = False
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
@@ -184,8 +185,8 @@ Partial Class Form1
     Friend WithEvents Timer1 As Timer
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
-    Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
+    Private WithEvents ToolStripProgressBar1 As ToolStripProgressBar
 End Class

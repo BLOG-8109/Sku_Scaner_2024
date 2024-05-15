@@ -22,9 +22,9 @@ Public Class Form1
 
         ' 여기에서 mp3 파일 목록을 초기화하거나, 외부에서 이 함수를 호출하여 설정
         mp3Files = New List(Of String) From {
-            "D:\sku_Scaner\Sku_Scaner\fail.wav",
-            "D:\sku_Scaner\Sku_Scaner\fail.mp3",
-            "D:\sku_Scaner\Sku_Scaner\fail.mp3"}
+        "D:\sku_Scaner\Sku_Scaner\start.wav",
+        "D:\sku_Scaner\Sku_Scaner\Beep.wav",
+        "D:\sku_Scaner\Sku_Scaner\end.wav"}
         StartGlobalKeyboardHook()
     End Sub
     Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -46,8 +46,6 @@ Public Class Form1
     Private Sub scan_start()
         ' 엑셀 파일 경로
         Dim fileInfo As New FileInfo(FilePath)
-
-
         Using package As New ExcelPackage(fileInfo)
             Dim worksheet As ExcelWorksheet = package.Workbook.Worksheets(0)
 
@@ -219,28 +217,40 @@ Public Class Form1
     End Sub
 
     Private Sub TextBox2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox2.KeyPress
-        'e.Handled = True
-        Dim trimmedText As String = TextBox2.Text.Trim()
-        If e.KeyChar = Convert.ToChar(Keys.Enter) AndAlso trimmedText.Length = 13 Then
+        Dim trimmedText As String = TextBox2.Text.Trim() '공백 제거
 
-            Listview_check()
-            TextBox2.Text = ""
-            e.Handled = True
+        If e.KeyChar = Convert.ToChar(Keys.Enter) Then
+            If trimmedText.Length = 13 Then '13자리 바코드 일때만 작동
+                Listview_check()
+                TextBox2.Text = ""
+                e.Handled = True
+
+            Else
+                play_wav(1)
+                TextBox2.Text = ""
+                e.Handled = True
+            End If
         End If
     End Sub
 
     Private Sub Textbox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Textbox1.KeyPress
         Dim trimmedText As String = Textbox1.Text.Trim()
-        'e.Handled = True
-        ' Enter 키를 누르고, Textbox1의 텍스트 길이가 공백 제거 후 12이면 scan_start 메서드 실행
-        If e.KeyChar = Convert.ToChar(Keys.Enter) Then  '송장번호만 입력받기
-            If trimmedText.Length = 12 Then
-                scan_start()
 
+        ' Enter 키를 누르고, Textbox1의 텍스트 길이가 공백 제거 후 12이면 scan_start 메서드 실행
+        If e.KeyChar = Convert.ToChar(Keys.Enter) Then
+            If trimmedText.Length = 12 Then '12자리 송장번호만 입력받기
+                play_wav(0) ' 시작 wav
+                scan_start()
                 Textbox1.Enabled = False
                 TextBox2.Enabled = True
                 TextBox2.Focus()
                 e.Handled = True
+            Else
+                play_wav(1) ' beep wav
+                e.Handled = True
+                Textbox1.Text = vbNullString
+
+
             End If
         End If
     End Sub
@@ -286,5 +296,6 @@ Public Class Form1
             item.Selected = False
         Next
     End Sub
+
 
 End Class
