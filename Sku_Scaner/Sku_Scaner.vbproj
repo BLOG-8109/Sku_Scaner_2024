@@ -140,6 +140,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="barcode_data.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>barcode_data.resx</DependentUpon>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +171,11 @@
     <Compile Include="shipnergy.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="barcode_data.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>barcode_data.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>

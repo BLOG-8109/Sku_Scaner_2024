@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="20801R" xml:space="preserve">
+    <value>8806135244911</value>
+  </data>
+  <data name="20803R" xml:space="preserve">
+    <value>8806135245765</value>
+  </data>
+  <data name="10801R" xml:space="preserve">
+    <value>8806135250219</value>
+  </data>
+  <data name="10602R" xml:space="preserve">
+    <value>8809088970357</value>
+  </data>
+  <data name="10601R" xml:space="preserve">
+    <value>8809088970395</value>
+  </data>
+  <data name="20701R" xml:space="preserve">
+    <value>8809187049350</value>
+  </data>
+  <data name="20703R" xml:space="preserve">
+    <value>8809187049428</value>
+  </data>
+  <data name="20408R" xml:space="preserve">
+    <value>8809236798093</value>
+  </data>
+  <data name="30081" xml:space="preserve">
+    <value>8809236799076</value>
+  </data>
+  <data name="20104R" xml:space="preserve">
+    <value>8809474498151</value>
+  </data>
+  <data name="20106R" xml:space="preserve">
+    <value>8809540517533</value>
+  </data>
+  <data name="20107R" xml:space="preserve">
+    <value>8809540517540</value>
+  </data>
+  <data name="20109R" xml:space="preserve">
+    <value>8809540517557</value>
+  </data>
+  <data name="20406R" xml:space="preserve">
+    <value>8809541190247</value>
+  </data>
+  <data name="20204R" xml:space="preserve">
+    <value>8809541190254</value>
+  </data>
+  <data name="20202R" xml:space="preserve">
+    <value>8809541190421</value>
+  </data>
+  <data name="20405R" xml:space="preserve">
+    <value>8809541190438</value>
+  </data>
+  <data name="10202R" xml:space="preserve">
+    <value>8809541199813</value>
+  </data>
+  <data name="20902R" xml:space="preserve">
+    <value>8809581076334</value>
+  </data>
+  <data name="20103R" xml:space="preserve">
+    <value>8809581076341</value>
+  </data>
+  <data name="20110R" xml:space="preserve">
+    <value>8809626566431</value>
+  </data>
+  <data name="20101R" xml:space="preserve">
+    <value>8809686383559</value>
+  </data>
+  <data name="20117R" xml:space="preserve">
+    <value>8809686383566</value>
+  </data>
+  <data name="20116R" xml:space="preserve">
+    <value>8809686384204</value>
+  </data>
+  <data name="20114R" xml:space="preserve">
+    <value>8809686384228</value>
+  </data>
+  <data name="20105R" xml:space="preserve">
+    <value>8809686389391</value>
+  </data>
+  <data name="20105" xml:space="preserve">
+    <value>8809686389391</value>
+  </data>
+  <data name="10111R" xml:space="preserve">
+    <value>8809686389872</value>
+  </data>
+  <data name="10107R" xml:space="preserve">
+    <value>8809689373915</value>
+  </data>
+  <data name="20205R" xml:space="preserve">
+    <value>8809738322154</value>
+  </data>
+  <data name="20206R" xml:space="preserve">
+    <value>8809738592236</value>
+  </data>
+  <data name="20125R" xml:space="preserve">
+    <value>8809782554464</value>
+  </data>
+  <data name="10116R" xml:space="preserve">
+    <value>8809782555614</value>
+  </data>
+  <data name="21003R" xml:space="preserve">
+    <value>8809783322635</value>
+  </data>
+  <data name="21001R" xml:space="preserve">
+    <value>8809783322642</value>
+  </data>
+  <data name="21001" xml:space="preserve">
+    <value>8809783322642</value>
+  </data>
+  <data name="21002R" xml:space="preserve">
+    <value>8809783322659</value>
+  </data>
+  <data name="20605R" xml:space="preserve">
+    <value>8809783322666</value>
+  </data>
+  <data name="21101R" xml:space="preserve">
+    <value>8809800940057</value>
+  </data>
+  <data name="30310" xml:space="preserve">
+    <value>8809800940088</value>
+  </data>
+  <data name="20906R" xml:space="preserve">
+    <value>8809800940101</value>
+  </data>
+  <data name="20907R" xml:space="preserve">
+    <value>8809800940118</value>
+  </data>
+  <data name="21201R" xml:space="preserve">
+    <value>8809800940125</value>
+  </data>
+  <data name="20604R" xml:space="preserve">
+    <value>8809800940132</value>
+  </data>
+  <data name="20602R" xml:space="preserve">
+    <value>8809800940149</value>
+  </data>
+  <data name="20601R" xml:space="preserve">
+    <value>8809800940156</value>
+  </data>
+  <data name="20309R" xml:space="preserve">
+    <value>8809800940163</value>
+  </data>
+  <data name="11201R" xml:space="preserve">
+    <value>8809800940170</value>
+  </data>
+  <data name="20304R" xml:space="preserve">
+    <value>8809800940187</value>
+  </data>
+  <data name="20302R" xml:space="preserve">
+    <value>8809800940194</value>
+  </data>
+  <data name="20310R" xml:space="preserve">
+    <value>8809800940200</value>
+  </data>
+  <data name="20313R" xml:space="preserve">
+    <value>8809800940217</value>
+  </data>
+  <data name="20305R" xml:space="preserve">
+    <value>8809800940224</value>
+  </data>
+  <data name="20306R" xml:space="preserve">
+    <value>8809800940231</value>
+  </data>
+  <data name="10114R" xml:space="preserve">
+    <value>8809800940255</value>
+  </data>
+  <data name="10117R" xml:space="preserve">
+    <value>8809800940262</value>
+  </data>
+  <data name="10204R" xml:space="preserve">
+    <value>8809800940279</value>
+  </data>
+  <data name="10203R" xml:space="preserve">
+    <value>8809800940286</value>
+  </data>
+  <data name="10802R" xml:space="preserve">
+    <value>8809800940293</value>
+  </data>
+  <data name="11003R" xml:space="preserve">
+    <value>8809800940309</value>
+  </data>
+  <data name="10304R" xml:space="preserve">
+    <value>8809800940316</value>
+  </data>
+  <data name="10205R" xml:space="preserve">
+    <value>8809800940323</value>
+  </data>
+  <data name="10302R" xml:space="preserve">
+    <value>8809800940330</value>
+  </data>
+  <data name="10206R" xml:space="preserve">
+    <value>8809800940361</value>
+  </data>
+  <data name="10305R" xml:space="preserve">
+    <value>8809800940378</value>
+  </data>
+  <data name="11008R" xml:space="preserve">
+    <value>8809800940385</value>
+  </data>
+  <data name="10103R" xml:space="preserve">
+    <value>8809800940408</value>
+  </data>
+  <data name="10112R" xml:space="preserve">
+    <value>8809800940453</value>
+  </data>
+  <data name="21005R" xml:space="preserve">
+    <value>8809800940460</value>
+  </data>
+  <data name="11005R" xml:space="preserve">
+    <value>8809800940477</value>
+  </data>
+  <data name="11006R" xml:space="preserve">
+    <value>8809800940491</value>
+  </data>
+  <data name="30313" xml:space="preserve">
+    <value>8809800940507</value>
+  </data>
+  <data name="21202R" xml:space="preserve">
+    <value>8809800940514</value>
+  </data>
+  <data name="21203R" xml:space="preserve">
+    <value>8809800940521</value>
+  </data>
+  <data name="20606R" xml:space="preserve">
+    <value>8809800940606</value>
+  </data>
+  <data name="30318" xml:space="preserve">
+    <value>8809800940620</value>
+  </data>
+  <data name="20126R" xml:space="preserve">
+    <value>8809800940637</value>
+  </data>
+  <data name="20127R" xml:space="preserve">
+    <value>8809800940644</value>
+  </data>
+  <data name="10118R" xml:space="preserve">
+    <value>8809800940651</value>
+  </data>
+  <data name="20128R" xml:space="preserve">
+    <value>8809800940668</value>
+  </data>
+  <data name="20129R" xml:space="preserve">
+    <value>8809800940675</value>
+  </data>
+  <data name="10119R" xml:space="preserve">
+    <value>8809800940682</value>
+  </data>
+  <data name="20407R" xml:space="preserve">
+    <value>8809800940699</value>
+  </data>
+  <data name="21008R" xml:space="preserve">
+    <value>8809800940712</value>
+  </data>
+  <data name="21010R" xml:space="preserve">
+    <value>8809800940729</value>
+  </data>
+  <data name="21009R" xml:space="preserve">
+    <value>8809800940736</value>
+  </data>
+  <data name="20130RR" xml:space="preserve">
+    <value>8809800940743</value>
+  </data>
+  <data name="20130R" xml:space="preserve">
+    <value>8809800940743</value>
+  </data>
+  <data name="21204RR" xml:space="preserve">
+    <value>8809800940750</value>
+  </data>
+  <data name="21204R" xml:space="preserve">
+    <value>8809800940750</value>
+  </data>
+  <data name="21011RR" xml:space="preserve">
+    <value>8809800940767</value>
+  </data>
+  <data name="21011R" xml:space="preserve">
+    <value>8809800940767</value>
+  </data>
+  <data name="21301R" xml:space="preserve">
+    <value>8809800940774</value>
+  </data>
+  <data name="21303R" xml:space="preserve">
+    <value>8809800940781</value>
+  </data>
+  <data name="21302R" xml:space="preserve">
+    <value>8809800940798</value>
+  </data>
+  <data name="11207R" xml:space="preserve">
+    <value>8809800940804</value>
+  </data>
+  <data name="11202R" xml:space="preserve">
+    <value>8809800940835</value>
+  </data>
+  <data name="30322" xml:space="preserve">
+    <value>8809800940842</value>
+  </data>
+  <data name="11203R" xml:space="preserve">
+    <value>8809800940859</value>
+  </data>
+  <data name="11204R" xml:space="preserve">
+    <value>8809800940866</value>
+  </data>
+  <data name="21304R" xml:space="preserve">
+    <value>8809800940880</value>
+  </data>
+  <data name="11208R" xml:space="preserve">
+    <value>8809800940910</value>
+  </data>
+  <data name="11208R" xml:space="preserve">
+    <value>8809800940910</value>
+  </data>
+  <data name="10120R" xml:space="preserve">
+    <value>8809800940941</value>
+  </data>
+  <data name="11012R" xml:space="preserve">
+    <value>8809800940965</value>
+  </data>
+  <data name="11010R" xml:space="preserve">
+    <value>8809800940972</value>
+  </data>
+  <data name="30324" xml:space="preserve">
+    <value>8809800940989</value>
+  </data>
+  <data name="30327" xml:space="preserve">
+    <value>8809800941016</value>
+  </data>
+  <data name="30328" xml:space="preserve">
+    <value>8809800941023</value>
+  </data>
+  <data name="10122R" xml:space="preserve">
+    <value>8809800941030</value>
+  </data>
+  <data name="21012R" xml:space="preserve">
+    <value>8809800941047</value>
+  </data>
+  <data name="11214R" xml:space="preserve">
+    <value>8809800941061</value>
+  </data>
+  <data name="21013R" xml:space="preserve">
+    <value>8809800941078</value>
+  </data>
+  <data name="21305R" xml:space="preserve">
+    <value>8809800941160</value>
+  </data>
+  <data name="11218R" xml:space="preserve">
+    <value>8809800941214</value>
+  </data>
+  <data name="21017R" xml:space="preserve">
+    <value>8809800941221</value>
+  </data>
+  <data name="21018R" xml:space="preserve">
+    <value>8809800941238</value>
+  </data>
+  <data name="20314R" xml:space="preserve">
+    <value>8809800941245</value>
+  </data>
+  <data name="20133R" xml:space="preserve">
+    <value>8809800941252</value>
+  </data>
+  <data name="11217R" xml:space="preserve">
+    <value>8809800941269</value>
+  </data>
+  <data name="30331" xml:space="preserve">
+    <value>8809800941276</value>
+  </data>
+  <data name="20316R" xml:space="preserve">
+    <value>8809800941290</value>
+  </data>
+  <data name="21205R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="21014R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20804R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20802R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20311R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20203R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20132R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20131R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20119R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20118R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20115R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20113R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20111R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="20108R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="11215R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="11212R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="11206R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="11205R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="10207R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="10121R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="10108R" xml:space="preserve">
+    <value />
+  </data>
+  <data name="30330" xml:space="preserve">
+    <value />
+  </data>
+  <data name="30326" xml:space="preserve">
+    <value />
+  </data>
+  <data name="30325" xml:space="preserve">
+    <value />
+  </data>
+  <data name="30320" xml:space="preserve">
+    <value />
+  </data>
+  <data name="30319" xml:space="preserve">
+    <value />
+  </data>
+  <data name="30317" xml:space="preserve">
+    <value />
+  </data>
+  <data name="30315" xml:space="preserve">
+    <value />
+  </data>
+  <data name="30314" xml:space="preserve">
+    <value />
+  </data>
+</root>

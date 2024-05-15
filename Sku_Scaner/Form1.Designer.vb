@@ -33,8 +33,8 @@ Partial Class Form1
         Me.Textbox1 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -61,19 +61,19 @@ Partial Class Form1
         '열기EzAdminToolStripMenuItem
         '
         Me.열기EzAdminToolStripMenuItem.Name = "열기EzAdminToolStripMenuItem"
-        Me.열기EzAdminToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.열기EzAdminToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.열기EzAdminToolStripMenuItem.Text = "열기(EzAdmin)"
         '
         '열기ShopeeToolStripMenuItem
         '
         Me.열기ShopeeToolStripMenuItem.Name = "열기ShopeeToolStripMenuItem"
-        Me.열기ShopeeToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.열기ShopeeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.열기ShopeeToolStripMenuItem.Text = "열기(Shopee)"
         '
         '열기Qoo10ToolStripMenuItem
         '
         Me.열기Qoo10ToolStripMenuItem.Name = "열기Qoo10ToolStripMenuItem"
-        Me.열기Qoo10ToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.열기Qoo10ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.열기Qoo10ToolStripMenuItem.Text = "열기(Qoo10)"
         '
         'ListView1
@@ -104,26 +104,25 @@ Partial Class Form1
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Dock = System.Windows.Forms.DockStyle.None
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(527, 428)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1, Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(273, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
         Me.StatusStrip1.SizingGrip = False
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(123, 17)
-        Me.ToolStripStatusLabel1.Text = "ToolStripStatusLabel1"
         '
         'ToolStripProgressBar1
         '
         Me.ToolStripProgressBar1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
         Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(14, 17)
+        Me.ToolStripStatusLabel1.Text = "0"
         '
         'TextBox2
         '
