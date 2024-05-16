@@ -328,6 +328,7 @@ Public Class Form1
             If item.SubItems(1).Text = barcode Then
                 ' 해당 항목이 이미 체크되었는지 검사
                 If item.Checked Then
+                    play_wav(1) ' beep wav
                     MessageBox.Show("이미 검수 완료된 상품입니다.")
                     Exit Sub
                 Else
@@ -352,13 +353,17 @@ Public Class Form1
 
                 ' 모든 아이템이 체크되었는지 다시 검사
                 If AllItemsChecked() Then
+                    play_wav(2) ' end wav
                     ListView1.Columns.Clear()
                     ListView1.Items.Clear()
                     Textbox1.Enabled = True
+                    Textbox1.Text = vbNullString
                     TextBox2.Enabled = False
+                    TextBox2.Text = vbNullString
                 End If
             End If
         Else
+            play_wav(1) ' beep wav
             MessageBox.Show("일치하는 항목이 없습니다.")
         End If
     End Sub
