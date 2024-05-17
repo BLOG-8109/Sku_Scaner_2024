@@ -25,7 +25,7 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial
 
-        ToolStripStatusLabel1.Text = FilePath
+        'ToolStripStatusLabel1.Text = FilePath
         Textbox1.Enabled = True
         TextBox2.Enabled = False
 

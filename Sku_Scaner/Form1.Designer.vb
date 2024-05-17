@@ -29,6 +29,8 @@ Partial Class Form1
         Me.열기EzAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.열기ShopeeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.열기Qoo10ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.설정ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.바코드추가ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.Textbox1 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -38,15 +40,15 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.설정ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.바코드추가ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.도움말ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.없음ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.파일ToolStripMenuItem, Me.설정ToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.파일ToolStripMenuItem, Me.설정ToolStripMenuItem, Me.도움말ToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
@@ -63,20 +65,33 @@ Partial Class Form1
         '열기EzAdminToolStripMenuItem
         '
         Me.열기EzAdminToolStripMenuItem.Name = "열기EzAdminToolStripMenuItem"
-        Me.열기EzAdminToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.열기EzAdminToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.열기EzAdminToolStripMenuItem.Text = "열기(EzAdmin)"
         '
         '열기ShopeeToolStripMenuItem
         '
         Me.열기ShopeeToolStripMenuItem.Name = "열기ShopeeToolStripMenuItem"
-        Me.열기ShopeeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.열기ShopeeToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.열기ShopeeToolStripMenuItem.Text = "열기(Shopee)"
         '
         '열기Qoo10ToolStripMenuItem
         '
         Me.열기Qoo10ToolStripMenuItem.Name = "열기Qoo10ToolStripMenuItem"
-        Me.열기Qoo10ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.열기Qoo10ToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.열기Qoo10ToolStripMenuItem.Text = "열기(Qoo10)"
+        '
+        '설정ToolStripMenuItem
+        '
+        Me.설정ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.바코드추가ToolStripMenuItem})
+        Me.설정ToolStripMenuItem.Name = "설정ToolStripMenuItem"
+        Me.설정ToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
+        Me.설정ToolStripMenuItem.Text = "설정"
+        '
+        '바코드추가ToolStripMenuItem
+        '
+        Me.바코드추가ToolStripMenuItem.Name = "바코드추가ToolStripMenuItem"
+        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.바코드추가ToolStripMenuItem.Text = "바코드 추가"
         '
         'ListView1
         '
@@ -151,18 +166,19 @@ Partial Class Form1
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "바코드"
         '
-        '설정ToolStripMenuItem
+        '도움말ToolStripMenuItem
         '
-        Me.설정ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.바코드추가ToolStripMenuItem})
-        Me.설정ToolStripMenuItem.Name = "설정ToolStripMenuItem"
-        Me.설정ToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
-        Me.설정ToolStripMenuItem.Text = "설정"
+        Me.도움말ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.없음ToolStripMenuItem})
+        Me.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem"
+        Me.도움말ToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
+        Me.도움말ToolStripMenuItem.Text = "도움말"
         '
-        '바코드추가ToolStripMenuItem
+        '없음ToolStripMenuItem
         '
-        Me.바코드추가ToolStripMenuItem.Name = "바코드추가ToolStripMenuItem"
-        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.바코드추가ToolStripMenuItem.Text = "바코드 추가"
+        Me.없음ToolStripMenuItem.Enabled = False
+        Me.없음ToolStripMenuItem.Name = "없음ToolStripMenuItem"
+        Me.없음ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.없음ToolStripMenuItem.Text = "없음"
         '
         'Form1
         '
@@ -205,4 +221,6 @@ Partial Class Form1
     Private WithEvents ToolStripProgressBar1 As ToolStripProgressBar
     Friend WithEvents 설정ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 바코드추가ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents 도움말ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents 없음ToolStripMenuItem As ToolStripMenuItem
 End Class
