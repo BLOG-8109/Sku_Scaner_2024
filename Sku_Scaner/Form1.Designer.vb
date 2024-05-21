@@ -31,6 +31,8 @@ Partial Class Form1
         Me.열기Qoo10ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.설정ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.바코드추가ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.도움말ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.없음ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.Textbox1 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -40,10 +42,10 @@ Partial Class Form1
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.도움말ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.없음ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -51,7 +53,7 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.파일ToolStripMenuItem, Me.설정ToolStripMenuItem, Me.도움말ToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(798, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -90,8 +92,22 @@ Partial Class Form1
         '바코드추가ToolStripMenuItem
         '
         Me.바코드추가ToolStripMenuItem.Name = "바코드추가ToolStripMenuItem"
-        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
         Me.바코드추가ToolStripMenuItem.Text = "바코드 추가"
+        '
+        '도움말ToolStripMenuItem
+        '
+        Me.도움말ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.없음ToolStripMenuItem})
+        Me.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem"
+        Me.도움말ToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
+        Me.도움말ToolStripMenuItem.Text = "도움말"
+        '
+        '없음ToolStripMenuItem
+        '
+        Me.없음ToolStripMenuItem.Enabled = False
+        Me.없음ToolStripMenuItem.Name = "없음ToolStripMenuItem"
+        Me.없음ToolStripMenuItem.Size = New System.Drawing.Size(98, 22)
+        Me.없음ToolStripMenuItem.Text = "없음"
         '
         'ListView1
         '
@@ -113,7 +129,7 @@ Partial Class Form1
         Me.Textbox1.Name = "Textbox1"
         Me.Textbox1.Size = New System.Drawing.Size(629, 21)
         Me.Textbox1.TabIndex = 0
-        Me.Textbox1.Text = "567742313250"
+        Me.Textbox1.Text = "590226181045"
         '
         'Timer1
         '
@@ -122,10 +138,9 @@ Partial Class Form1
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1, Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 429)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
-        Me.StatusStrip1.SizingGrip = False
+        Me.StatusStrip1.Size = New System.Drawing.Size(798, 22)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -133,7 +148,7 @@ Partial Class Form1
         '
         Me.ToolStripProgressBar1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
         Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
-        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(100, 16)
+        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(150, 16)
         '
         'ToolStripStatusLabel1
         '
@@ -147,6 +162,7 @@ Partial Class Form1
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(629, 21)
         Me.TextBox2.TabIndex = 2
+        Me.TextBox2.Text = "8809686384228"
         '
         'Label1
         '
@@ -166,25 +182,15 @@ Partial Class Form1
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "바코드"
         '
-        '도움말ToolStripMenuItem
+        'ErrorProvider1
         '
-        Me.도움말ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.없음ToolStripMenuItem})
-        Me.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem"
-        Me.도움말ToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
-        Me.도움말ToolStripMenuItem.Text = "도움말"
-        '
-        '없음ToolStripMenuItem
-        '
-        Me.없음ToolStripMenuItem.Enabled = False
-        Me.없음ToolStripMenuItem.Name = "없음ToolStripMenuItem"
-        Me.없음ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.없음ToolStripMenuItem.Text = "없음"
+        Me.ErrorProvider1.ContainerControl = Me
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(798, 451)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.StatusStrip1)
@@ -201,6 +207,7 @@ Partial Class Form1
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -214,7 +221,6 @@ Partial Class Form1
     Friend WithEvents Textbox1 As TextBox
     Friend WithEvents Timer1 As Timer
     Friend WithEvents StatusStrip1 As StatusStrip
-    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
@@ -223,4 +229,6 @@ Partial Class Form1
     Friend WithEvents 바코드추가ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 도움말ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 없음ToolStripMenuItem As ToolStripMenuItem
+    Private WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents ErrorProvider1 As ErrorProvider
 End Class

@@ -97,6 +97,30 @@ Public Class Form1
                 Channel = 2
         End Select
     End Sub
+    Private Sub SaveTextToDateFile()
+        Dim currentDate As String = DateTime.Now.ToString("yyyyMMdd") ' "yyyyMMdd" 형식으로 날짜를 문자열로 변환
+        Dim filePath As String = Application.StartupPath & "\" & currentDate & ".txt" ' 파일 이름에 날짜 포함
+        Using writer As StreamWriter = New StreamWriter(filePath, True) ' 파일에 내용을 추가
+            writer.WriteLine(Textbox1.Text) ' TextBox1의 텍스트를 파일에 쓰기
+        End Using
+    End Sub
+    Private Function CheckForDuplicatesToday() As Boolean
+        Dim currentDate As String = DateTime.Now.ToString("yyyyMMdd")
+        Dim filePath As String = Application.StartupPath & "\" & currentDate & ".txt"
+        If File.Exists(filePath) Then
+            Using reader As StreamReader = New StreamReader(filePath)
+                Dim line As String
+                Do
+                    line = reader.ReadLine()
+                    If line IsNot Nothing AndAlso line.Equals(Textbox1.Text, StringComparison.OrdinalIgnoreCase) Then
+                        Return True ' 중복 발견 시 True 반환
+                    End If
+                Loop Until line Is Nothing
+            End Using
+        End If
+        Return False ' 중복 없음
+    End Function
+
 
 
     Private Sub scan_start()
@@ -276,6 +300,7 @@ Public Class Form1
 
             ' 고유 값의 개수 출력
             ToolStripStatusLabel1.Text = "총 주문 건 수 : " & uniqueValues.Count
+            ToolStripProgressBar1.Maximum = uniqueValues.Count
             'Console.WriteLine("Total unique values in column B: " & uniqueValues.Count)
         End Using
     End Sub
@@ -353,6 +378,10 @@ Public Class Form1
 
                 ' 모든 아이템이 체크되었는지 다시 검사
                 If AllItemsChecked() Then
+                    SaveTextToDateFile() '완료시 txt 저장
+                    ToolStripProgressBar1.Value += 1
+                    ToolStripStatusLabel1.Text = ToolStripProgressBar1.Value & "/" & ToolStripProgressBar1.Maximum
+
                     play_wav(2) ' end wav
                     ListView1.Columns.Clear()
                     ListView1.Items.Clear()
@@ -387,6 +416,13 @@ Public Class Form1
     End Sub
 
     Private Sub Textbox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Textbox1.KeyPress
+        If CheckForDuplicatesToday() Then
+            Dim result As DialogResult = MessageBox.Show("이미 검수 완료된 송장입니다. 다시 검수 하시겠습니까?", "중복 검사", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.No Then
+                Exit Sub
+            End If
+        End If
+
         Dim trimmedText As String = Textbox1.Text.Trim()
 
         ' Enter 키를 누르고, Textbox1의 텍스트 길이가 공백 제거 후 12 또는 15자리일 때 처리
