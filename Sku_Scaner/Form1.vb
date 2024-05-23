@@ -299,8 +299,8 @@ Public Class Form1
             Next
 
             ' 고유 값의 개수 출력
-            ToolStripStatusLabel1.Text = "총 주문 건 수 : " & uniqueValues.Count
-            ToolStripProgressBar1.Maximum = uniqueValues.Count
+            ToolStripStatusLabel1.Text = "총 주문 건 수 : " & uniqueValues.Count - 1
+            ToolStripProgressBar1.Maximum = uniqueValues.Count - 1
             'Console.WriteLine("Total unique values in column B: " & uniqueValues.Count)
         End Using
     End Sub
@@ -340,6 +340,9 @@ Public Class Form1
         Else
             e.Item.BackColor = System.Drawing.Color.White
         End If
+
+        ' 모든 아이템이 체크되었는지 검사
+        CheckItemsAndPerformActions()
     End Sub
 
     Private Sub Listview_check()
@@ -377,19 +380,8 @@ Public Class Form1
                 itemCount = 0 ' itemCount 초기화
 
                 ' 모든 아이템이 체크되었는지 다시 검사
-                If AllItemsChecked() Then
-                    SaveTextToDateFile() '완료시 txt 저장
-                    ToolStripProgressBar1.Value += 1
-                    ToolStripStatusLabel1.Text = ToolStripProgressBar1.Value & "/" & ToolStripProgressBar1.Maximum
+                CheckItemsAndPerformActions()
 
-                    play_wav(2) ' end wav
-                    ListView1.Columns.Clear()
-                    ListView1.Items.Clear()
-                    Textbox1.Enabled = True
-                    Textbox1.Text = vbNullString
-                    TextBox2.Enabled = False
-                    TextBox2.Text = vbNullString
-                End If
             End If
         Else
             play_wav(1) ' beep wav
@@ -451,14 +443,52 @@ Public Class Form1
     End Sub
 
 
-    Private Function AllItemsChecked() As Boolean
-        For Each item As ListViewItem In ListView1.Items
-            If Not item.Checked Then
-                Return False ' 하나라도 체크되어 있지 않으면 False 반환
-            End If
-        Next
-        Return True ' 모두 체크되어 있으면 True 반환
-    End Function
+    'Private Function AllItemsChecked() As Boolean
+    '    For Each item As ListViewItem In ListView1.Items
+    '        If Not item.Checked Then
+    '            Return False ' 하나라도 체크되어 있지 않으면 False 반환
+    '        End If
+    '    Next
+    '    Return True ' 모두 체크되어 있으면 True 반환
+    'End Function
+
+    Private Sub CheckItemsAndPerformActions()
+        ' 모든 아이템 체크 여부 검사 및 결과에 따라 액션 수행
+        If ListView1.Items.Cast(Of ListViewItem).All(Function(item) item.Checked) Then
+            PerformAllCheckedActions()
+        End If
+    End Sub
+
+    Private Sub PerformAllCheckedActions()
+        ' 모든 아이템이 체크된 경우 실행할 작업들
+        SaveTextToDateFile() ' TXT 파일 저장
+        UpdateStatus()        ' 상태 업데이트
+        ResetForm()           ' 폼 초기화
+    End Sub
+
+    Private Sub UpdateStatus()
+        ' 상태바 업데이트
+        ToolStripProgressBar1.Value += 1
+        ToolStripStatusLabel1.Text = $"{ToolStripProgressBar1.Value}/{ToolStripProgressBar1.Maximum}"
+        play_wav(2) ' 종료 신호음 재생
+    End Sub
+
+    Private Sub ResetForm()
+        ' 폼 컨트롤 초기화
+        With ListView1
+            .Columns.Clear()
+            .Items.Clear()
+        End With
+        With Textbox1
+            .Enabled = True
+            .Text = vbNullString
+        End With
+        With TextBox2
+            .Enabled = False
+            .Text = vbNullString
+        End With
+    End Sub
+
     Private Sub ListView1_MouseWheel(sender As Object, e As MouseEventArgs) Handles ListView1.MouseWheel
         Dim delta As Integer = e.Delta
 
@@ -497,4 +527,5 @@ Public Class Form1
         Dim resxPath As String = Application.StartupPath & "\barcode_data.resx"
         AddResourceDataUsingInputBox(resxPath)
     End Sub
+
 End Class
