@@ -269,6 +269,7 @@ Public Class Form1
                 CountUniqueValuesInColumnB()
                 'OpenAndProcessFile(convertedFilePath)
             Else
+                CountUniqueValuesInColumnB()
                 ' 그 외의 경우에는 그대로 파일을 처리
                 'OpenAndProcessFile(selectedFilePath)
             End If
@@ -340,8 +341,7 @@ Public Class Form1
         Else
             e.Item.BackColor = System.Drawing.Color.White
         End If
-
-        ' 모든 아이템이 체크되었는지 검사
+        ' 모든 아이템이 체크되었는지 다시 검사
         CheckItemsAndPerformActions()
     End Sub
 
@@ -379,8 +379,7 @@ Public Class Form1
                 foundItem.BackColor = System.Drawing.Color.Yellow
                 itemCount = 0 ' itemCount 초기화
 
-                ' 모든 아이템이 체크되었는지 다시 검사
-                CheckItemsAndPerformActions()
+
 
             End If
         Else
@@ -408,7 +407,8 @@ Public Class Form1
     End Sub
 
     Private Sub Textbox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Textbox1.KeyPress
-        If CheckForDuplicatesToday() Then
+
+        If CheckForDuplicatesToday() And e.KeyChar = Convert.ToChar(Keys.Enter) Then
             Dim result As DialogResult = MessageBox.Show("이미 검수 완료된 송장입니다. 다시 검수 하시겠습니까?", "중복 검사", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If result = DialogResult.No Then
                 Exit Sub
@@ -467,6 +467,7 @@ Public Class Form1
     End Sub
 
     Private Sub UpdateStatus()
+        On Error Resume Next
         ' 상태바 업데이트
         ToolStripProgressBar1.Value += 1
         ToolStripStatusLabel1.Text = $"{ToolStripProgressBar1.Value}/{ToolStripProgressBar1.Maximum}"

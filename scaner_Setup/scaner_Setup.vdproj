@@ -219,12 +219,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F10AACA7EAAF13BD0F628AE1303CE506"
-        "OwnerKey" = "8:_1559054DA8DCD3F01F0825E91039A4E0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E5058A90C8804C33B97FD5E599D612B1"
         "MsmSig" = "8:_UNDEFINED"
@@ -356,6 +350,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -1122,7 +1124,7 @@
         "UpgradeCode" = "8:{BD885A2C-CA3F-4C16-9C05-2A8BA2E3FC69}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
