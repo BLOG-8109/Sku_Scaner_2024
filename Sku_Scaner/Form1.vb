@@ -7,6 +7,8 @@ Imports System.Resources
 Imports System.Reflection
 Imports System.Collections
 Imports Microsoft.VisualBasic
+Imports Sku_Scaner.My.Resources
+Imports System.ComponentModel.Design
 
 
 
@@ -25,9 +27,12 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial
 
+
         'ToolStripStatusLabel1.Text = FilePath
         Textbox1.Enabled = True
         TextBox2.Enabled = False
+        Dim version As Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version
+        Me.Text = $"Isntree Scan - v{version}"
 
         ' 여기에서 mp3 파일 목록을 초기화하거나, 외부에서 이 함수를 호출하여 설정
         mp3Files = New List(Of String) From {
@@ -35,6 +40,7 @@ Public Class Form1
         Application.StartupPath & "\Beep.wav",
         Application.StartupPath & "\end.wav"
 }
+
 
         StartGlobalKeyboardHook()
     End Sub
@@ -53,28 +59,48 @@ Public Class Form1
             Return
         End If
 
-        ' ResXResourceWriter 객체 생성
-        Using writer As New ResXResourceWriter(resxFilePath)
-            ' 기존 리소스 데이터 불러오기
-            If System.IO.File.Exists(resxFilePath) Then
-                Using reader As New ResXResourceReader(resxFilePath)
-                    reader.UseResXDataNodes = True
-                    Dim node As DictionaryEntry
-                    For Each node In reader
-                        Dim resxNode As ResXDataNode = CType(node.Value, ResXDataNode)
-                        writer.AddResource(resxNode)  ' 기존 데이터를 새 writer에 추가
-                    Next
-                End Using
-            End If
+        ' 중복 키 검사
+        Dim duplicateFound As Boolean = False
+        If System.IO.File.Exists(resxFilePath) Then
+            Using reader As New ResXResourceReader(resxFilePath)
+                reader.UseResXDataNodes = True
+                Dim node As DictionaryEntry
+                For Each node In reader
+                    Dim resxNode As ResXDataNode = CType(node.Value, ResXDataNode)
+                    If String.Equals(resxNode.Name, key) Then
+                        duplicateFound = True
+                        MessageBox.Show("중복된 연동코드는 추가할 수 없습니다.")
+                        Exit For
+                    End If
+                Next
+            End Using
+        End If
 
-            ' 새로운 리소스 데이터 추가
-            writer.AddResource(key, value)
+        ' 중복이 없을 경우에만 리소스 데이터 추가
+        If Not duplicateFound Then
+            Using writer As New ResXResourceWriter(resxFilePath)
+                ' 기존 리소스 데이터 다시 쓰기
+                If System.IO.File.Exists(resxFilePath) Then
+                    Using reader As New ResXResourceReader(resxFilePath)
+                        reader.UseResXDataNodes = True
+                        Dim node As DictionaryEntry
+                        For Each node In reader
+                            Dim resxNode As ResXDataNode = CType(node.Value, ResXDataNode)
+                            writer.AddResource(resxNode)
+                        Next
+                    End Using
+                End If
 
-            ' 리소스 파일에 변경사항 저장
-            writer.Generate()
-        End Using
-        MessageBox.Show("Resource added successfully!")
+                ' 새로운 리소스 데이터 추가
+                writer.AddResource(key, value)
+
+                ' 리소스 파일에 변경사항 저장
+                writer.Generate()
+            End Using
+            MessageBox.Show("추가 완료")
+        End If
     End Sub
+
 
     Private Sub play_wav(ByVal idx As Integer)
         player = New SoundPlayer(mp3Files(idx))
@@ -209,18 +235,29 @@ Public Class Form1
 
             ' Dictionary를 사용하여 바코드를 키로, 해당 바코드의 총 수량과 기타 정보를 값으로 저장
             Dim barcodeInfo As New Dictionary(Of String, (Integer, String, String))
-            ' 리소스 매니저 초기화
-            resourceManager = New ResourceManager("Sku_Scaner.barcode_data", GetType(Form1).Assembly)
 
+            ' 리소스 파일의 외부 경로 지정
+
+            Dim resourcePath As String = Path.Combine(Application.StartupPath, "barcode_data.resx")
+            ' 리소스 매니저를 외부 리소스 파일로 초기화
+            'Dim resourceManager As New ResourceManager(resourcePath, GetType(Form1).Assembly)
+            Dim resourceManager As New ResourceManager("Sku_Scaner.barcode_data", Assembly.GetExecutingAssembly())
 
             For row As Integer = 2 To worksheet.Dimension.End.Row ' 1행은 헤더이므로 2행부터 시작
                 ' 사용자가 입력한 조건과 현재 행의 첫 번째 열 값이 일치하는지 확인
                 If worksheet.Cells(row, 2).Text = condition Then
+
                     Dim barcode As String = resourceManager.GetString(worksheet.Cells(row, 6).Text)
+
                     Dim productName As String = worksheet.Cells(row, 4).Text ' 상품명 가져오기
                     Dim quantity As Integer = Integer.Parse(worksheet.Cells(row, 5).Text) ' 수량 가져오기
                     Dim linkageCode As String = worksheet.Cells(row, 6).Text ' 연동코드 가져오기
-
+                    ' barcode가 Nothing인 경우 처리
+                    If barcode Is Nothing Then
+                        ' 예: 기본값 설정 또는 오류 메시지 출력
+                        barcode = "Unknown Barcode" ' 기본값 설정 예제
+                        MsgBox($"{linkageCode}에 대한 바코드를 찾을 수 없습니다.")
+                    End If
                     ' Dictionary에 해당 바코드가 이미 있는지 확인하고, 없으면 추가하고 있으면 수량을 더함
                     If Not barcodeInfo.ContainsKey(barcode) Then
                         barcodeInfo.Add(barcode, (quantity, productName, linkageCode))
@@ -230,6 +267,7 @@ Public Class Form1
                     End If
                 End If
             Next
+
 
             ' ListView에 합쳐진 데이터를 표시
             For Each kvp As KeyValuePair(Of String, (Integer, String, String)) In barcodeInfo
@@ -525,8 +563,12 @@ Public Class Form1
     End Sub
 
     Private Sub 바코드추가ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 바코드추가ToolStripMenuItem.Click
-        Dim resxPath As String = Application.StartupPath & "\barcode_data.resx"
+        Dim resxPath As String = Path.Combine(Application.StartupPath, "barcode_data.resx")
+        'MsgBox(resxPath)
+        'Path.Combine(Application.StartupPath, "barcode_data.resx")
         AddResourceDataUsingInputBox(resxPath)
+
     End Sub
+
 
 End Class

@@ -31,5 +31,6 @@ Imports System.Runtime.InteropServices
 ' 기본값으로 할 수 있습니다.
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("1.0.*")>  ' 이 형식은 유효함
+<Assembly: AssemblyFileVersion("1.0.0.0")>  ' 별표 대신 명확한 빌드 번호 필요
+
