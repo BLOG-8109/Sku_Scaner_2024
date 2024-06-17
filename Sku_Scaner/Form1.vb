@@ -73,7 +73,7 @@ Public Class Form1
             ' 리소스 파일에 변경사항 저장
             writer.Generate()
         End Using
-        MessageBox.Show("Resource added successfully!")
+        MessageBox.Show("추가 완료")
     End Sub
 
     Private Sub play_wav(ByVal idx As Integer)
@@ -526,6 +526,7 @@ Public Class Form1
 
     Private Sub 바코드추가ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 바코드추가ToolStripMenuItem.Click
         Dim resxPath As String = Application.StartupPath & "\barcode_data.resx"
+        'MsgBox(resxPath)
         AddResourceDataUsingInputBox(resxPath)
     End Sub
 

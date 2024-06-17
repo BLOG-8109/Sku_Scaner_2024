@@ -207,6 +207,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_EA81CD961D4C45B3AD62C8F7E38CE35E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EC83B03CB7EF3F8D3B8FFCD078272C4B"
         "OwnerKey" = "8:_B227E30520C30F84311C09A727F2452F"
         "MsmSig" = "8:_UNDEFINED"
@@ -215,6 +221,12 @@
         {
         "MsmKey" = "8:_F10AACA7EAAF13BD0F628AE1303CE506"
         "OwnerKey" = "8:_E5058A90C8804C33B97FD5E599D612B1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F10AACA7EAAF13BD0F628AE1303CE506"
+        "OwnerKey" = "8:_1559054DA8DCD3F01F0825E91039A4E0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1001,6 +1013,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EA81CD961D4C45B3AD62C8F7E38CE35E"
+            {
+            "SourcePath" = "8:..\\Sku_Scaner\\barcode_data.resx"
+            "TargetName" = "8:barcode_data.resx"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA42C02F2D541B98D475C188D0658D8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EC83B03CB7EF3F8D3B8FFCD078272C4B"
             {
             "AssemblyRegister" = "3:1"
@@ -1119,15 +1151,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:scaner_Setup"
-        "ProductCode" = "8:{2D14E263-59C5-40C8-B69F-3EFB8F779BA5}"
-        "PackageCode" = "8:{9699A3CA-6C02-4A65-A19A-1BEE25687347}"
+        "ProductCode" = "8:{9B2F8280-7756-4E03-93B2-7ABE065B04AA}"
+        "PackageCode" = "8:{9321A36B-3A43-4C54-904A-DEC3656019F0}"
         "UpgradeCode" = "8:{BD885A2C-CA3F-4C16-9C05-2A8BA2E3FC69}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:Kim Young HooN"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1137,7 +1169,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_5AECEA3ED15E476CBD771623E1D4CEF9"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -1242,7 +1274,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2CFD523A011247A78CAFFABA21409254"
             {
-            "Name" = "8:SKU_SCANER"
+            "Name" = "8:검수프로그램"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
