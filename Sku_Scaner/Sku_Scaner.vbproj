@@ -177,13 +177,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="barcode_data.resx">
+    <Content Include="barcode_data.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>barcode_data.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+<<<<<<< HEAD
       <SubType>Designer</SubType>
     </EmbeddedResource>
+=======
+    </Content>
+>>>>>>> 104e295f394371da5a8620d5a2cc6346cbc20fd7
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>

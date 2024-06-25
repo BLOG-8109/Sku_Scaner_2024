@@ -1151,15 +1151,24 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:scaner_Setup"
+<<<<<<< HEAD
         "ProductCode" = "8:{E64A0F7E-3F00-41B8-8B2A-F0F2216FE507}"
         "PackageCode" = "8:{F77F1C42-3E07-46EF-867D-0D2F307569BB}"
+=======
+        "ProductCode" = "8:{9B2F8280-7756-4E03-93B2-7ABE065B04AA}"
+        "PackageCode" = "8:{9321A36B-3A43-4C54-904A-DEC3656019F0}"
+>>>>>>> 104e295f394371da5a8620d5a2cc6346cbc20fd7
         "UpgradeCode" = "8:{BD885A2C-CA3F-4C16-9C05-2A8BA2E3FC69}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
+<<<<<<< HEAD
         "ProductVersion" = "8:1.0.5"
+=======
+        "ProductVersion" = "8:1.0.3"
+>>>>>>> 104e295f394371da5a8620d5a2cc6346cbc20fd7
         "Manufacturer" = "8:Kim Young HooN"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

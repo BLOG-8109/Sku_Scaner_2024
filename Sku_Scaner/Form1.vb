@@ -559,9 +559,7 @@ Public Class Form1
     End Sub
 
     Private Sub 바코드추가ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 바코드추가ToolStripMenuItem.Click
-        Dim resxPath As String = Path.Combine(Application.StartupPath, "barcode_data.resx")
-        'MsgBox(resxPath)
-        'Path.Combine(Application.StartupPath, "barcode_data.resx")
+        Dim resxPath As String = Application.StartupPath & "\barcode_data.resx"
         AddResourceDataUsingInputBox(resxPath)
 
     End Sub
