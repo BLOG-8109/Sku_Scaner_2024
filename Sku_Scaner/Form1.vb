@@ -34,7 +34,7 @@ Public Class Form1
         Application.StartupPath & "\start.wav",
         Application.StartupPath & "\Beep.wav",
         Application.StartupPath & "\end.wav"
-}
+        }
 
 
         StartGlobalKeyboardHook()
@@ -314,7 +314,7 @@ Public Class Form1
     Private Sub CountUniqueValuesInColumnB()
         ' 파일 경로 설정
         'Dim filePath As String = "D:\sku_Scaner\data.xlsx"
-        Dim fileInfo As New FileInfo(filePath)
+        Dim fileInfo As New FileInfo(FilePath)
 
         ' ExcelPackage 객체를 사용하여 파일 열기
         Using package As New ExcelPackage(fileInfo)
@@ -561,8 +561,5 @@ Public Class Form1
     Private Sub 바코드추가ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 바코드추가ToolStripMenuItem.Click
         Dim resxPath As String = Application.StartupPath & "\barcode_data.resx"
         AddResourceDataUsingInputBox(resxPath)
-
     End Sub
-
-
 End Class
