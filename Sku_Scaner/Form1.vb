@@ -314,7 +314,7 @@ Public Class Form1
     Private Sub CountUniqueValuesInColumnB()
         ' 파일 경로 설정
         'Dim filePath As String = "D:\sku_Scaner\data.xlsx"
-        Dim fileInfo As New FileInfo(FilePath)
+        Dim fileInfo As New FileInfo(filePath)
 
         ' ExcelPackage 객체를 사용하여 파일 열기
         Using package As New ExcelPackage(fileInfo)
