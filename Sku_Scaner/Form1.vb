@@ -1,14 +1,9 @@
-﻿Imports ExcelDataReader
-Imports OfficeOpenXml ' EPPlus 라이브러리를 사용하기 위한 네임스페이스
-Imports System.IO ' 파일 처리를 위한 네임스페이스
+﻿Imports System.IO ' 파일 처리를 위한 네임스페이스
 Imports System.Media
-Imports System.Numerics
-Imports System.Resources
 Imports System.Reflection
-Imports System.Collections
-Imports Microsoft.VisualBasic
-Imports Sku_Scaner.My.Resources
-Imports System.ComponentModel.Design
+Imports System.Resources
+Imports ExcelDataReader
+Imports OfficeOpenXml ' EPPlus 라이브러리를 사용하기 위한 네임스페이스
 
 
 
@@ -188,6 +183,7 @@ Public Class Form1
                         Dim currentInfo = barcodeInfo(barcode)
                         barcodeInfo(barcode) = (currentInfo.Item1 + quantity, currentInfo.Item2, currentInfo.Item3)
                     End If
+
                 End If
             Next
 
