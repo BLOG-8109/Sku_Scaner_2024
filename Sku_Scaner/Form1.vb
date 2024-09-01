@@ -4,11 +4,11 @@ Imports System.Reflection
 Imports System.Resources
 Imports ExcelDataReader
 Imports OfficeOpenXml ' EPPlus 라이브러리를 사용하기 위한 네임스페이스
-
+Imports System.Xml
 
 
 Public Class Form1
-
+    Dim barcode_data As String = Application.StartupPath & "\barcode_data.xlsx"
     Dim FilePath As String = Application.StartupPath & "\data.xlsx"
     Dim itemCount As Integer = 0 ' 상품 수량 카운트 변수 전역 변수로 변경
 
@@ -42,60 +42,6 @@ Public Class Form1
     Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         StopGlobalKeyboardHook()
     End Sub
-
-    Private Sub AddResourceDataUsingInputBox(resxFilePath As String)
-        ' 사용자로부터 키와 값을 입력받음
-        Dim key As String = InputBox("연동코드 입력", "연동코드 입력")
-        Dim value As String = InputBox("바코드 입력", "바코드 입력")
-
-        ' 입력받은 키와 값이 유효한지 확인
-        If String.IsNullOrEmpty(key) OrElse String.IsNullOrEmpty(value) Then
-            MessageBox.Show("Key or value cannot be empty.")
-            Return
-        End If
-
-        ' 중복 키 검사
-        Dim duplicateFound As Boolean = False
-        If System.IO.File.Exists(resxFilePath) Then
-            Using reader As New ResXResourceReader(resxFilePath)
-                reader.UseResXDataNodes = True
-                Dim node As DictionaryEntry
-                For Each node In reader
-                    Dim resxNode As ResXDataNode = CType(node.Value, ResXDataNode)
-                    If String.Equals(resxNode.Name, key) Then
-                        duplicateFound = True
-                        MessageBox.Show("중복된 연동코드는 추가할 수 없습니다.")
-                        Exit For
-                    End If
-                Next
-            End Using
-        End If
-
-        ' 중복이 없을 경우에만 리소스 데이터 추가
-        If Not duplicateFound Then
-            Using writer As New ResXResourceWriter(resxFilePath)
-                ' 기존 리소스 데이터 다시 쓰기
-                If System.IO.File.Exists(resxFilePath) Then
-                    Using reader As New ResXResourceReader(resxFilePath)
-                        reader.UseResXDataNodes = True
-                        Dim node As DictionaryEntry
-                        For Each node In reader
-                            Dim resxNode As ResXDataNode = CType(node.Value, ResXDataNode)
-                            writer.AddResource(resxNode)
-                        Next
-                    End Using
-                End If
-
-                ' 새로운 리소스 데이터 추가
-                writer.AddResource(key, value)
-
-                ' 리소스 파일에 변경사항 저장
-                writer.Generate()
-            End Using
-            MessageBox.Show("추가 완료")
-        End If
-    End Sub
-
 
     Private Sub play_wav(ByVal idx As Integer)
         player = New SoundPlayer(mp3Files(idx))
@@ -208,84 +154,117 @@ Public Class Form1
 
 
     End Sub
+
+
+    Public Class BarcodeInfo
+        Public Property Quantity As Integer
+        Public Property ProductName As String
+        Public Property LinkageCode As String
+    End Class
+
+
     Private Sub shopee_start()
-        ' 엑셀 파일 경로
-        Dim fileInfo As New FileInfo(FilePath)
-        Using package As New ExcelPackage(fileInfo)
-            Dim worksheet As ExcelWorksheet = package.Workbook.Worksheets(0)
+        ' 메인 데이터 시트 파일 경로
+        Dim mainFileInfo As New FileInfo(FilePath)
+        ' 바코드 데이터 파일 경로
+        Dim barcodeFileInfo As New FileInfo(barcode_data)
 
-            ' ListView 설정 초기화
-            ListView1.Columns.Clear()
-            ListView1.Items.Clear()
+        If Not mainFileInfo.Exists Then
+            MsgBox("메인 데이터 파일이 존재하지 않습니다.")
+            Exit Sub
+        End If
 
-            ' 직접 지정한 헤더를 배열로 정의합니다.
-            Dim customHeaders() As String = {"송장번호", "바코드", "연동코드", "상품명", "수량", "검수수량"}
+        If Not barcodeFileInfo.Exists Then
+            MsgBox("바코드 데이터 파일이 존재하지 않습니다.")
+            Exit Sub
+        End If
 
-            ' ListView의 열을 설정합니다.
-            For Each header As String In customHeaders
-                ListView1.Columns.Add(header)
-            Next
+        ' 바코드 정보를 담을 Dictionary
+        Dim barcodeDictionary As New Dictionary(Of String, String)
 
-            ' 사용자가 입력한 조건을 텍스트 상자에서 읽어옴
-            Dim condition As String = Textbox1.Text.Trim()
+        Try
+            ' 바코드 데이터 읽기
+            Using barcodePackage As New ExcelPackage(barcodeFileInfo)
+                Dim barcodeWorksheet As ExcelWorksheet = barcodePackage.Workbook.Worksheets(0)
+                For row As Integer = 2 To barcodeWorksheet.Dimension.End.Row
+                    Dim linkageCode As String = barcodeWorksheet.Cells(row, 1).Value?.ToString().Trim()
+                    Dim barcode As String = barcodeWorksheet.Cells(row, 2).Value?.ToString().Trim()
 
-            ' Dictionary를 사용하여 바코드를 키로, 해당 바코드의 총 수량과 기타 정보를 값으로 저장
-            Dim barcodeInfo As New Dictionary(Of String, (Integer, String, String))
-
-            ' 리소스 파일의 외부 경로 지정
-
-            Dim resourcePath As String = Path.Combine(Application.StartupPath, "barcode_data.resx")
-            ' 리소스 매니저를 외부 리소스 파일로 초기화
-            'Dim resourceManager As New ResourceManager(resourcePath, GetType(Form1).Assembly)
-            Dim resourceManager As New ResourceManager("Sku_Scaner.barcode_data", Assembly.GetExecutingAssembly())
-
-            For row As Integer = 2 To worksheet.Dimension.End.Row ' 1행은 헤더이므로 2행부터 시작
-                ' 사용자가 입력한 조건과 현재 행의 첫 번째 열 값이 일치하는지 확인
-                If worksheet.Cells(row, 2).Text = condition Then
-
-                    Dim barcode As String = resourceManager.GetString(worksheet.Cells(row, 6).Text)
-
-                    Dim productName As String = worksheet.Cells(row, 4).Text ' 상품명 가져오기
-                    Dim quantity As Integer = Integer.Parse(worksheet.Cells(row, 5).Text) ' 수량 가져오기
-                    Dim linkageCode As String = worksheet.Cells(row, 6).Text ' 연동코드 가져오기
-                    ' barcode가 Nothing인 경우 처리
-                    If barcode Is Nothing Then
-                        ' 예: 기본값 설정 또는 오류 메시지 출력
-                        barcode = "Unknown Barcode" ' 기본값 설정 예제
-                        MsgBox($"{linkageCode}에 대한 바코드를 찾을 수 없습니다.")
+                    If Not String.IsNullOrEmpty(linkageCode) AndAlso Not String.IsNullOrEmpty(barcode) Then
+                        If Not barcodeDictionary.ContainsKey(linkageCode) Then
+                            barcodeDictionary.Add(linkageCode, barcode)
+                        End If
                     End If
-                    ' Dictionary에 해당 바코드가 이미 있는지 확인하고, 없으면 추가하고 있으면 수량을 더함
-                    If Not barcodeInfo.ContainsKey(barcode) Then
-                        barcodeInfo.Add(barcode, (quantity, productName, linkageCode))
-                    Else
-                        Dim currentInfo = barcodeInfo(barcode)
-                        barcodeInfo(barcode) = (currentInfo.Item1 + quantity, currentInfo.Item2, currentInfo.Item3)
+                Next
+            End Using
+
+            ' 메인 데이터 시트 읽기
+            Using package As New ExcelPackage(mainFileInfo)
+                Dim worksheet As ExcelWorksheet = package.Workbook.Worksheets(0)
+
+                ListView1.Columns.Clear()
+                ListView1.Items.Clear()
+
+                Dim customHeaders() As String = {"송장번호", "바코드", "연동코드", "상품명", "수량", "검수수량"}
+                For Each header As String In customHeaders
+                    ListView1.Columns.Add(header)
+                Next
+
+                Dim condition As String = Textbox1.Text.Trim()
+                Dim barcodeInfo As New Dictionary(Of String, BarcodeInfo)
+
+                For row As Integer = 2 To worksheet.Dimension.End.Row
+                    Dim cellValue As String = worksheet.Cells(row, 2).Value?.ToString()
+
+                    If cellValue = condition Then
+                        Dim linkageCode As String = worksheet.Cells(row, 6).Value?.ToString().Trim()
+                        Dim barcode As String = Nothing
+
+                        ' Dictionary에서 바코드를 찾음
+                        If barcodeDictionary.ContainsKey(linkageCode) Then
+                            barcode = barcodeDictionary(linkageCode)
+                        Else
+                            barcode = "Unknown Barcode"
+                            MsgBox($"{linkageCode}에 대한 바코드를 찾을 수 없습니다.")
+                        End If
+
+                        Dim productName As String = worksheet.Cells(row, 4).Value?.ToString()
+                        Dim quantity As Integer = Integer.Parse(worksheet.Cells(row, 5).Value?.ToString())
+
+                        If Not barcodeInfo.ContainsKey(barcode) Then
+                            barcodeInfo.Add(barcode, New BarcodeInfo With {
+                                .Quantity = quantity,
+                                .ProductName = productName,
+                                .LinkageCode = linkageCode
+                            })
+                        Else
+                            barcodeInfo(barcode).Quantity += quantity
+                        End If
                     End If
-                End If
+                Next
+
+                For Each kvp As KeyValuePair(Of String, BarcodeInfo) In barcodeInfo
+                    Dim newRow As New ListViewItem(New String() {
+                        condition,
+                        kvp.Key,
+                        kvp.Value.LinkageCode,
+                        kvp.Value.ProductName,
+                        kvp.Value.Quantity.ToString(),
+                        "0"
+                    })
+                    ListView1.Items.Add(newRow)
+                Next
+            End Using
+
+            For Each column As ColumnHeader In ListView1.Columns
+                column.Width = -2
             Next
-
-
-            ' ListView에 합쳐진 데이터를 표시
-            For Each kvp As KeyValuePair(Of String, (Integer, String, String)) In barcodeInfo
-                Dim newRow As New ListViewItem(condition) ' 조건 추가
-                newRow.SubItems.Add(kvp.Key) ' 바코드 추가
-                newRow.SubItems.Add(kvp.Value.Item3) ' 연동코드 추가
-                newRow.SubItems.Add(kvp.Value.Item2) ' 상품명 추가
-                newRow.SubItems.Add(kvp.Value.Item1.ToString()) ' 총 수량 추가
-                newRow.SubItems.Add(0) ' 연동코드 추가
-                ListView1.Items.Add(newRow)
-            Next
-
-
-        End Using
-
-        ' 모든 컬럼 너비 자동 조절
-        For Each column As ColumnHeader In ListView1.Columns
-            column.Width = -2
-        Next
-
-
+        Catch ex As Exception
+            MsgBox("엑셀 파일을 읽는 중 오류가 발생했습니다: " & ex.Message)
+        End Try
     End Sub
+
+
     Private Sub OpenFile()
         ' 파일을 열기 위한 OpenFileDialog 생성
         Dim openFileDialog As New OpenFileDialog()
@@ -558,11 +537,6 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub 바코드추가ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 바코드추가ToolStripMenuItem.Click
-        Dim resxPath As String = Application.StartupPath & "\barcode_data.resx"
-        AddResourceDataUsingInputBox(resxPath)
-
-    End Sub
 
 
 End Class
