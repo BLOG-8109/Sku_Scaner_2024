@@ -5,8 +5,6 @@ Imports System.Resources
 Imports ExcelDataReader
 Imports OfficeOpenXml ' EPPlus 라이브러리를 사용하기 위한 네임스페이스
 
-
-
 Public Class Form1
     Dim barcode_data As String = Application.StartupPath & "\barcode_data.xlsx"
     Dim FilePath As String = Application.StartupPath & "\data.xlsx"
@@ -21,9 +19,6 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial
-
-
-        'ToolStripStatusLabel1.Text = FilePath
         Textbox1.Enabled = True
         TextBox2.Enabled = False
         Dim version As Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version
@@ -33,9 +28,7 @@ Public Class Form1
         mp3Files = New List(Of String) From {
         Application.StartupPath & "\start.wav",
         Application.StartupPath & "\Beep.wav",
-        Application.StartupPath & "\end.wav"
-}
-
+        Application.StartupPath & "\end.wav"}
 
         StartGlobalKeyboardHook()
     End Sub
@@ -225,7 +218,7 @@ Public Class Form1
                             barcode = barcodeDictionary(linkageCode)
                         Else
                             barcode = "Unknown Barcode"
-                            MsgBox($"{linkageCode}에 대한 바코드를 찾을 수 없습니다.")
+                            MsgBox($"{linkageCode}에 대한 바코드를 찾을 수 없습니다..")
                         End If
 
                         Dim productName As String = worksheet.Cells(row, 4).Value?.ToString()
