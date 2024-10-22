@@ -198,19 +198,20 @@ Public Class Form1
                 ListView1.Columns.Clear()
                 ListView1.Items.Clear()
 
+                ' 헤더 설정
                 Dim customHeaders() As String = {"송장번호", "바코드", "연동코드", "상품명", "수량", "검수수량"}
                 For Each header As String In customHeaders
                     ListView1.Columns.Add(header)
                 Next
 
-                Dim condition As String = Textbox1.Text.Trim()
+                Dim condition As String = Textbox1.Text.Trim() '스캔 > 송장번호 검색 변수
                 Dim barcodeInfo As New Dictionary(Of String, BarcodeInfo)
 
                 For row As Integer = 2 To worksheet.Dimension.End.Row
                     Dim cellValue As String = worksheet.Cells(row, 2).Value?.ToString()
 
                     If cellValue = condition Then
-                        Dim linkageCode As String = worksheet.Cells(row, 6).Value?.ToString().Trim()
+                        Dim linkageCode As String = worksheet.Cells(row, 6).Value?.ToString().Trim() '쇼피 ERP코드 저장 변수
                         Dim barcode As String = Nothing
 
                         ' Dictionary에서 바코드를 찾음
@@ -257,6 +258,110 @@ Public Class Form1
         End Try
     End Sub
 
+    Private Sub qoo10_start()
+        
+        ' 메인 데이터 시트 파일 경로
+        Dim mainFileInfo As New FileInfo(FilePath)
+        ' 바코드 데이터 파일 경로
+        Dim barcodeFileInfo As New FileInfo(barcode_data)
+
+        If Not mainFileInfo.Exists Then
+            MsgBox("메인 데이터 파일이 존재하지 않습니다.")
+            Exit Sub
+        End If
+
+        If Not barcodeFileInfo.Exists Then
+            MsgBox("바코드 데이터 파일이 존재하지 않습니다.")
+            Exit Sub
+        End If
+
+        ' 바코드 정보를 담을 Dictionary
+        Dim barcodeDictionary As New Dictionary(Of String, String)
+
+        Try
+            ' 바코드 데이터 읽기
+            Using barcodePackage As New ExcelPackage(barcodeFileInfo)
+                Dim barcodeWorksheet As ExcelWorksheet = barcodePackage.Workbook.Worksheets(0)
+                For row As Integer = 2 To barcodeWorksheet.Dimension.End.Row
+                    Dim linkageCode As String = barcodeWorksheet.Cells(row, 1).Value?.ToString().Trim()
+                    Dim barcode As String = barcodeWorksheet.Cells(row, 2).Value?.ToString().Trim()
+
+                    If Not String.IsNullOrEmpty(linkageCode) AndAlso Not String.IsNullOrEmpty(barcode) Then
+                        If Not barcodeDictionary.ContainsKey(linkageCode) Then
+                            barcodeDictionary.Add(linkageCode, barcode)
+                        End If
+                    End If
+                Next
+            End Using
+
+            ' 메인 데이터 시트 읽기
+            Using package As New ExcelPackage(mainFileInfo)
+                Dim worksheet As ExcelWorksheet = package.Workbook.Worksheets(0)
+
+                ListView1.Columns.Clear()
+                ListView1.Items.Clear()
+
+                ' 헤더 설정
+                Dim customHeaders() As String = {"송장번호", "바코드", "연동코드", "상품명", "수량", "검수수량"}
+                For Each header As String In customHeaders
+                    ListView1.Columns.Add(header)
+                Next
+
+                Dim condition As String = Textbox1.Text.Trim() '스캔 > 송장번호 검색 변수
+                Dim barcodeInfo As New Dictionary(Of String, BarcodeInfo)
+
+                For row As Integer = 2 To worksheet.Dimension.End.Row
+                    Dim cellValue As String = worksheet.Cells(row, 2).Value?.ToString()
+
+
+                    If cellValue = condition Then
+                        Dim linkageCode As String = worksheet.Cells(row, 5).Value?.ToString().Trim() '쇼피 ERP코드 저장 변수
+                        Dim barcode As String = Nothing
+
+                        ' Dictionary에서 바코드를 찾음
+                        If barcodeDictionary.ContainsKey(linkageCode) Then
+                            barcode = barcodeDictionary(linkageCode)
+
+                        Else
+                            barcode = "Unknown Barcode"
+                            MsgBox($"{linkageCode}에 대한 바코드를 찾을 수 없습니다..")
+                        End If
+
+                        Dim productName As String = worksheet.Cells(row, 7).Value?.ToString() '제품명
+                        Dim quantity As Integer = Integer.Parse(worksheet.Cells(row, 8).Value?.ToString())
+
+                        If Not barcodeInfo.ContainsKey(barcode) Then
+                            barcodeInfo.Add(barcode, New BarcodeInfo With {
+                                .Quantity = quantity,
+                                .ProductName = productName,
+                                .LinkageCode = linkageCode
+                            })
+                        Else
+                            barcodeInfo(barcode).Quantity += quantity
+                        End If
+                    End If
+                Next
+
+                For Each kvp As KeyValuePair(Of String, BarcodeInfo) In barcodeInfo
+                    Dim newRow As New ListViewItem(New String() {
+                        condition,
+                        kvp.Key,
+                        kvp.Value.LinkageCode,
+                        kvp.Value.ProductName,
+                        kvp.Value.Quantity.ToString(),
+                        "0"
+                    })
+                    ListView1.Items.Add(newRow)
+                Next
+            End Using
+
+            For Each column As ColumnHeader In ListView1.Columns
+                column.Width = -2
+            Next
+        Catch ex As Exception
+            MsgBox("엑셀 파일을 읽는 중 오류가 발생했습니다: " & vbCrLf & ex.Message)
+        End Try
+    End Sub
 
     Private Sub OpenFile()
         ' 파일을 열기 위한 OpenFileDialog 생성
@@ -426,7 +531,7 @@ Public Class Form1
         ' Enter 키를 누르고, Textbox1의 텍스트 길이가 공백 제거 후 12 또는 15자리일 때 처리
         If e.KeyChar = Convert.ToChar(Keys.Enter) Then
             ' 12자리 또는 15자리 송장번호만 입력받기
-            If trimmedText.Length = 12 Or trimmedText.Length = 15 Then
+            If trimmedText.Length = 12 Or trimmedText.Length = 15 Or trimmedText.Length = 13 Then
                 play_wav(0) ' 시작 wav
                 ' Channel 값에 따라 다른 시작 메서드 호출
                 Select Case Channel
@@ -435,7 +540,7 @@ Public Class Form1
                     Case 1 ' Shopee
                         shopee_start()
                     Case 2 ' Qoo10
-                        'qoo10_start() ' 가정: Qoo10에 대한 처리 메서드가 존재한다고 가정
+                        qoo10_start() ' 가정: Qoo10에 대한 처리 메서드가 존재한다고 가정
                 End Select
                 Textbox1.Enabled = False
                 TextBox2.Enabled = True
@@ -530,6 +635,12 @@ Public Class Form1
         Next
     End Sub
 
-
-
+    Private Sub 바코드추가ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 바코드추가ToolStripMenuItem.Click
+        Open_folderURL()
+    End Sub
+    Private Sub Open_folderURL()
+        Dim barcode_URL As String = Application.StartupPath & "\barcode_data.xlsx"
+        Dim folderPath As String = Path.GetDirectoryName(barcode_URL)
+        Process.Start("explorer.exe", folderPath)
+    End Sub
 End Class

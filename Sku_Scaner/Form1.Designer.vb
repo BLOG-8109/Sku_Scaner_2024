@@ -92,7 +92,7 @@ Partial Class Form1
         '바코드추가ToolStripMenuItem
         '
         Me.바코드추가ToolStripMenuItem.Name = "바코드추가ToolStripMenuItem"
-        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.바코드추가ToolStripMenuItem.Text = "바코드 추가"
         '
         '도움말ToolStripMenuItem
