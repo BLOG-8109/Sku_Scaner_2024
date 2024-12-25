@@ -1,5 +1,6 @@
 ﻿Imports System.IO ' 파일 처리를 위한 네임스페이스
 Imports System.Media
+Imports System.Diagnostics
 Imports System.Reflection
 Imports System.Resources
 Imports ExcelDataReader
@@ -43,7 +44,7 @@ Public Class Form1
     End Sub
     Private Sub OpenFileMenuItem_Click(sender As Object, e As EventArgs) _
     Handles 열기EzAdminToolStripMenuItem.Click, 열기ShopeeToolStripMenuItem.Click, 열기Qoo10ToolStripMenuItem.Click
-
+        ToolStripProgressBar1.Value = 0
         OpenFile()
         ' sender를 ToolStripMenuItem으로 캐스팅하여 메뉴 아이템 참조
         Dim menuItem As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
@@ -55,6 +56,9 @@ Public Class Form1
                 Channel = 1
             Case "열기Qoo10ToolStripMenuItem"
                 Channel = 2
+                ToolStripProgressBar1.Maximum += 1
+                ToolStripStatusLabel1.Text = $"{ToolStripProgressBar1.Value} / {ToolStripProgressBar1.Maximum}"
+                'MessageBox.Show(ToolStripProgressBar1.Maximum)
         End Select
     End Sub
     Private Sub SaveTextToDateFile()
@@ -411,8 +415,10 @@ Public Class Form1
             Next
 
             ' 고유 값의 개수 출력
-            ToolStripStatusLabel1.Text = "총 주문 건 수 : " & uniqueValues.Count - 1
             ToolStripProgressBar1.Maximum = uniqueValues.Count - 1
+            ToolStripStatusLabel1.Text = $"{ToolStripProgressBar1.Value} / {ToolStripProgressBar1.Maximum}"
+            'ToolStripStatusLabel1.Text = "총 주문 건 수 : " & uniqueValues.Count - 1
+
             'Console.WriteLine("Total unique values in column B: " & uniqueValues.Count)
         End Using
     End Sub
@@ -517,41 +523,42 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Textbox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Textbox1.KeyPress
+    '2024/10/24 이전 사용 이벤트
+    'Private Sub Textbox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Textbox1.KeyPress
 
-        If CheckForDuplicatesToday() And e.KeyChar = Convert.ToChar(Keys.Enter) Then
-            Dim result As DialogResult = MessageBox.Show("이미 검수 완료된 송장입니다. 다시 검수 하시겠습니까?", "중복 검사", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If result = DialogResult.No Then
-                Exit Sub
-            End If
-        End If
+    '    If CheckForDuplicatesToday() And e.KeyChar = Convert.ToChar(Keys.Enter) Then
+    '        Dim result As DialogResult = MessageBox.Show("이미 검수 완료된 송장입니다. 다시 검수 하시겠습니까?", "중복 검사", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+    '        If result = DialogResult.No Then
+    '            Exit Sub
+    '        End If
+    '    End If
 
-        Dim trimmedText As String = Textbox1.Text.Trim()
+    '    Dim trimmedText As String = Textbox1.Text.Trim()
 
-        ' Enter 키를 누르고, Textbox1의 텍스트 길이가 공백 제거 후 12 또는 15자리일 때 처리
-        If e.KeyChar = Convert.ToChar(Keys.Enter) Then
-            ' 12자리 또는 15자리 송장번호만 입력받기
-            If trimmedText.Length = 12 Or trimmedText.Length = 15 Or trimmedText.Length = 13 Then
-                play_wav(0) ' 시작 wav
-                ' Channel 값에 따라 다른 시작 메서드 호출
-                Select Case Channel
-                    Case 0 ' EzAdmin
-                        scan_start()
-                    Case 1 ' Shopee
-                        shopee_start()
-                    Case 2 ' Qoo10
-                        qoo10_start() ' 가정: Qoo10에 대한 처리 메서드가 존재한다고 가정
-                End Select
-                Textbox1.Enabled = False
-                TextBox2.Enabled = True
-                TextBox2.Focus()
-            Else
-                play_wav(1) ' beep wav
-                Textbox1.Text = vbNullString
-            End If
-            e.Handled = True
-        End If
-    End Sub
+    '    ' Enter 키를 누르고, Textbox1의 텍스트 길이가 공백 제거 후 12 또는 15자리일 때 처리
+    '    If e.KeyChar = Convert.ToChar(Keys.Enter) Then
+    '        ' 12자리 또는 15자리 송장번호만 입력받기
+    '        If trimmedText.Length = 12 Or trimmedText.Length = 15 Or trimmedText.Length = 13 Then
+    '            play_wav(0) ' 시작 wav
+    '            ' Channel 값에 따라 다른 시작 메서드 호출
+    '            Select Case Channel
+    '                Case 0 ' EzAdmin
+    '                    scan_start()
+    '                Case 1 ' Shopee
+    '                    shopee_start()
+    '                Case 2 ' Qoo10
+    '                    qoo10_start() ' 가정: Qoo10에 대한 처리 메서드가 존재한다고 가정
+    '            End Select
+    '            Textbox1.Enabled = False
+    '            TextBox2.Enabled = True
+    '            TextBox2.Focus()
+    '        Else
+    '            play_wav(1) ' beep wav
+    '            Textbox1.Text = vbNullString
+    '        End If
+    '        e.Handled = True
+    '    End If
+    'End Sub
 
 
     'Private Function AllItemsChecked() As Boolean
@@ -562,6 +569,48 @@ Public Class Form1
     '    Next
     '    Return True ' 모두 체크되어 있으면 True 반환
     'End Function
+    Private Sub Textbox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Textbox1.KeyPress
+        ' Enter 키를 눌렀을 때 처리
+        If e.KeyChar = Convert.ToChar(Keys.Enter) Then
+            Dim trimmedText As String = Textbox1.Text.Trim()
+
+            ' 중복 검사
+            If CheckForDuplicatesToday() Then
+                Dim result As DialogResult = MessageBox.Show("이미 검수 완료된 송장입니다. 다시 검수 하시겠습니까?", "중복 검사", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.No Then
+                    Exit Sub
+                End If
+            End If
+
+            ' 송장번호 길이가 12, 13, 15 자리일 경우만 처리
+            If {12, 13, 15}.Contains(trimmedText.Length) AndAlso Not trimmedText.StartsWith("880") Then
+                play_wav(0) ' 시작 소리 재생
+
+                ' Channel 값에 따른 작업 수행
+                Select Case Channel
+                    Case 0
+                        scan_start()  ' EzAdmin 처리
+                    Case 1
+                        shopee_start() ' Shopee 처리
+                    Case 2
+                        qoo10_start() ' Qoo10 처리
+                End Select
+
+                ' 텍스트 박스 상태 변경
+                Textbox1.Enabled = False
+                TextBox2.Enabled = True
+                TextBox2.Focus()
+            Else
+                ' 조건에 맞지 않으면 beep 소리 재생 후 텍스트 초기화
+                play_wav(1) ' beep 소리 재생
+                Textbox1.Clear()
+            End If
+
+            ' 키 입력 처리 완료
+            e.Handled = True
+        End If
+    End Sub
+
 
     Private Sub CheckItemsAndPerformActions()
         ' 모든 아이템 체크 여부 검사 및 결과에 따라 액션 수행
@@ -636,11 +685,40 @@ Public Class Form1
     End Sub
 
     Private Sub 바코드추가ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 바코드추가ToolStripMenuItem.Click
-        Open_folderURL()
+        ' Yes/No 메시지 박스를 띄움
+        Dim result As DialogResult = MessageBox.Show("파일을 실행하시겠습니까? (Yes: 파일 실행, No: 폴더 열기)", "파일 실행", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+            Open_ExcelAsAdmin()
+        ElseIf result = DialogResult.No Then
+            Open_folderURL()
+        End If
+
     End Sub
     Private Sub Open_folderURL()
         Dim barcode_URL As String = Application.StartupPath & "\barcode_data.xlsx"
         Dim folderPath As String = Path.GetDirectoryName(barcode_URL)
         Process.Start("explorer.exe", folderPath)
+    End Sub
+    Private Sub Open_ExcelAsAdmin()
+        Dim excelFilePath As String = Application.StartupPath & "\barcode_data.xlsx"
+
+        Try
+            Dim processInfo As New ProcessStartInfo()
+            processInfo.FileName = "excel.exe" ' 명시적으로 Excel을 실행
+            processInfo.Arguments = """" & excelFilePath & """" ' Excel에서 열고자 하는 파일 경로를 인수로 전달
+            processInfo.Verb = "runas" ' 관리자 권한으로 실행
+            processInfo.UseShellExecute = True ' 셸에서 실행
+            processInfo.WindowStyle = ProcessWindowStyle.Normal ' Excel 창을 정상적으로 열기
+
+            ' 프로세스를 시작하여 Excel을 관리자 권한으로 엽니다.
+            Process.Start(processInfo)
+        Catch ex As Exception
+            MessageBox.Show("관리자 권한으로 Excel 파일을 열 수 없습니다." & vbCrLf & ex.Message)
+            ' Open_folderURL()
+        End Try
+    End Sub
+
+    Private Sub 없음ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 없음ToolStripMenuItem.Click
+        CameraControl.Main()
     End Sub
 End Class

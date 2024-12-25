@@ -104,9 +104,8 @@ Partial Class Form1
         '
         '없음ToolStripMenuItem
         '
-        Me.없음ToolStripMenuItem.Enabled = False
         Me.없음ToolStripMenuItem.Name = "없음ToolStripMenuItem"
-        Me.없음ToolStripMenuItem.Size = New System.Drawing.Size(98, 22)
+        Me.없음ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.없음ToolStripMenuItem.Text = "없음"
         '
         'ListView1
