@@ -31,8 +31,8 @@ Partial Class Form1
         Me.열기Qoo10ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.설정ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.바코드추가ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SnapShotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.도움말ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.없음ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.Textbox1 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -43,6 +43,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.테스트용ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,7 +85,7 @@ Partial Class Form1
         '
         '설정ToolStripMenuItem
         '
-        Me.설정ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.바코드추가ToolStripMenuItem})
+        Me.설정ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.바코드추가ToolStripMenuItem, Me.SnapShotToolStripMenuItem})
         Me.설정ToolStripMenuItem.Name = "설정ToolStripMenuItem"
         Me.설정ToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.설정ToolStripMenuItem.Text = "설정"
@@ -95,18 +96,22 @@ Partial Class Form1
         Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.바코드추가ToolStripMenuItem.Text = "바코드 추가"
         '
+        'SnapShotToolStripMenuItem
+        '
+        Me.SnapShotToolStripMenuItem.Checked = True
+        Me.SnapShotToolStripMenuItem.CheckOnClick = True
+        Me.SnapShotToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.SnapShotToolStripMenuItem.Name = "SnapShotToolStripMenuItem"
+        Me.SnapShotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SnapShotToolStripMenuItem.Text = "SnapShot On"
+        Me.SnapShotToolStripMenuItem.ToolTipText = "스캔 시 SnapShot 기능 On/OFF"
+        '
         '도움말ToolStripMenuItem
         '
-        Me.도움말ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.없음ToolStripMenuItem})
+        Me.도움말ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.테스트용ToolStripMenuItem})
         Me.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem"
         Me.도움말ToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
         Me.도움말ToolStripMenuItem.Text = "도움말"
-        '
-        '없음ToolStripMenuItem
-        '
-        Me.없음ToolStripMenuItem.Name = "없음ToolStripMenuItem"
-        Me.없음ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.없음ToolStripMenuItem.Text = "없음"
         '
         'ListView1
         '
@@ -185,6 +190,12 @@ Partial Class Form1
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
+        '테스트용ToolStripMenuItem
+        '
+        Me.테스트용ToolStripMenuItem.Name = "테스트용ToolStripMenuItem"
+        Me.테스트용ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.테스트용ToolStripMenuItem.Text = "테스트용"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -227,7 +238,8 @@ Partial Class Form1
     Friend WithEvents 설정ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 바코드추가ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 도움말ToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents 없음ToolStripMenuItem As ToolStripMenuItem
     Private WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents ErrorProvider1 As ErrorProvider
+    Friend WithEvents SnapShotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents 테스트용ToolStripMenuItem As ToolStripMenuItem
 End Class

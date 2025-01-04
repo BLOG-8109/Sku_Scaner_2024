@@ -32,6 +32,11 @@ Public Class Form1
         Application.StartupPath & "\end.wav"}
 
         StartGlobalKeyboardHook()
+        If My.Settings.SnapShotText IsNot Nothing Then
+            SnapShotToolStripMenuItem.Text = My.Settings.SnapShotText
+            SnapShotToolStripMenuItem.Checked = (SnapShotToolStripMenuItem.Text = "SnapShot ON")
+        End If
+
     End Sub
     Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         StopGlobalKeyboardHook()
@@ -577,6 +582,9 @@ Public Class Form1
             ' 중복 검사
             If CheckForDuplicatesToday() Then
                 Dim result As DialogResult = MessageBox.Show("이미 검수 완료된 송장입니다. 다시 검수 하시겠습니까?", "중복 검사", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If SnapShotToolStripMenuItem.Checked = True Then
+                    CameraControl.Main()
+                End If
                 If result = DialogResult.No Then
                     Exit Sub
                 End If
@@ -584,8 +592,10 @@ Public Class Form1
 
             ' 송장번호 길이가 12, 13, 15 자리일 경우만 처리
             If {12, 13, 15}.Contains(trimmedText.Length) AndAlso Not trimmedText.StartsWith("880") Then
+                If SnapShotToolStripMenuItem.Checked = True Then
+                    CameraControl.Main()
+                End If
                 play_wav(0) ' 시작 소리 재생
-
                 ' Channel 값에 따른 작업 수행
                 Select Case Channel
                     Case 0
@@ -621,6 +631,9 @@ Public Class Form1
 
     Private Sub PerformAllCheckedActions()
         ' 모든 아이템이 체크된 경우 실행할 작업들
+        If SnapShotToolStripMenuItem.Checked = True Then
+            CameraControl.Main()
+        End If
         SaveTextToDateFile() ' TXT 파일 저장
         UpdateStatus()        ' 상태 업데이트
         ResetForm()           ' 폼 초기화
@@ -718,7 +731,20 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub 없음ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 없음ToolStripMenuItem.Click
+    Private Sub SnapShotToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SnapShotToolStripMenuItem.Click
+        If SnapShotToolStripMenuItem.Checked = True Then
+            SnapShotToolStripMenuItem.Text = "SnapShot ON"
+        Else
+            SnapShotToolStripMenuItem.Text = "SnapShot OFF"
+        End If
+        'CameraControl.Main()
+
+        My.Settings.SnapShotText = SnapShotToolStripMenuItem.Text
+        My.Settings.Save()
+    End Sub
+
+    Private Sub 테스트용ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 테스트용ToolStripMenuItem.Click
         CameraControl.Main()
     End Sub
+
 End Class
