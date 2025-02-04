@@ -24,7 +24,7 @@ Module CameraControl
             ' 사진 파일이 없으면 종료
             If String.IsNullOrEmpty(output) Then
                 Console.WriteLine("사진을 찾을 수 없습니다.")
-                MsgBox("?")
+                'MsgBox("?")
                 Return
             End If
 

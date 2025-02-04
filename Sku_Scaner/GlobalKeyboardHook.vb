@@ -66,8 +66,6 @@ Module GlobalKeyboardHook
                 GetWindowThreadProcessId(foregroundHwnd, foregroundProcessId)
 
                 If foregroundProcessId = Process.GetCurrentProcess().Id Then
-                    ' 활성 창이 현재 프로세스일 때만 작업 수행
-                    'MessageBox.Show("Ctrl + C가 눌렸습니다.")
 
                     Form1.ListView1.Columns.Clear()
                     Form1.ListView1.Items.Clear()

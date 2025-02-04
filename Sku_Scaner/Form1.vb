@@ -485,6 +485,7 @@ Public Class Form1
                     foundItem = item
                     Exit For
                 End If
+
             End If
         Next
 
@@ -583,7 +584,7 @@ Public Class Form1
             If CheckForDuplicatesToday() Then
                 Dim result As DialogResult = MessageBox.Show("이미 검수 완료된 송장입니다. 다시 검수 하시겠습니까?", "중복 검사", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If SnapShotToolStripMenuItem.Checked = True Then
-                    CameraControl.Main()
+                    'CameraControl.Main()
                 End If
                 If result = DialogResult.No Then
                     Exit Sub
@@ -593,17 +594,20 @@ Public Class Form1
             ' 송장번호 길이가 12, 13, 15 자리일 경우만 처리
             If {12, 13, 15}.Contains(trimmedText.Length) AndAlso Not trimmedText.StartsWith("880") Then
                 If SnapShotToolStripMenuItem.Checked = True Then
-                    CameraControl.Main()
+
                 End If
                 play_wav(0) ' 시작 소리 재생
                 ' Channel 값에 따른 작업 수행
                 Select Case Channel
                     Case 0
                         scan_start()  ' EzAdmin 처리
+                        CameraControl.Main()
                     Case 1
                         shopee_start() ' Shopee 처리
+                        CameraControl.Main()
                     Case 2
                         qoo10_start() ' Qoo10 처리
+                        CameraControl.Main()
                 End Select
 
                 ' 텍스트 박스 상태 변경
@@ -631,9 +635,7 @@ Public Class Form1
 
     Private Sub PerformAllCheckedActions()
         ' 모든 아이템이 체크된 경우 실행할 작업들
-        If SnapShotToolStripMenuItem.Checked = True Then
-            CameraControl.Main()
-        End If
+        CameraControl.Main()
         SaveTextToDateFile() ' TXT 파일 저장
         UpdateStatus()        ' 상태 업데이트
         ResetForm()           ' 폼 초기화
@@ -645,6 +647,7 @@ Public Class Form1
         ToolStripProgressBar1.Value += 1
         ToolStripStatusLabel1.Text = $"{ToolStripProgressBar1.Value}/{ToolStripProgressBar1.Maximum}"
         play_wav(2) ' 종료 신호음 재생
+
     End Sub
 
     Private Sub ResetForm()
@@ -737,7 +740,6 @@ Public Class Form1
         Else
             SnapShotToolStripMenuItem.Text = "SnapShot OFF"
         End If
-        'CameraControl.Main()
 
         My.Settings.SnapShotText = SnapShotToolStripMenuItem.Text
         My.Settings.Save()

@@ -33,6 +33,7 @@ Partial Class Form1
         Me.바코드추가ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SnapShotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.도움말ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.테스트용ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.Textbox1 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -43,7 +44,6 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.테스트용ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,7 +93,7 @@ Partial Class Form1
         '바코드추가ToolStripMenuItem
         '
         Me.바코드추가ToolStripMenuItem.Name = "바코드추가ToolStripMenuItem"
-        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.바코드추가ToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.바코드추가ToolStripMenuItem.Text = "바코드 추가"
         '
         'SnapShotToolStripMenuItem
@@ -102,7 +102,7 @@ Partial Class Form1
         Me.SnapShotToolStripMenuItem.CheckOnClick = True
         Me.SnapShotToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.SnapShotToolStripMenuItem.Name = "SnapShotToolStripMenuItem"
-        Me.SnapShotToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.SnapShotToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.SnapShotToolStripMenuItem.Text = "SnapShot On"
         Me.SnapShotToolStripMenuItem.ToolTipText = "스캔 시 SnapShot 기능 On/OFF"
         '
@@ -112,6 +112,12 @@ Partial Class Form1
         Me.도움말ToolStripMenuItem.Name = "도움말ToolStripMenuItem"
         Me.도움말ToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
         Me.도움말ToolStripMenuItem.Text = "도움말"
+        '
+        '테스트용ToolStripMenuItem
+        '
+        Me.테스트용ToolStripMenuItem.Name = "테스트용ToolStripMenuItem"
+        Me.테스트용ToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.테스트용ToolStripMenuItem.Text = "테스트용"
         '
         'ListView1
         '
@@ -166,7 +172,7 @@ Partial Class Form1
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(629, 21)
         Me.TextBox2.TabIndex = 2
-        Me.TextBox2.Text = "8809686384228"
+        Me.TextBox2.Text = "8809686383566"
         '
         'Label1
         '
@@ -189,12 +195,6 @@ Partial Class Form1
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
-        '
-        '테스트용ToolStripMenuItem
-        '
-        Me.테스트용ToolStripMenuItem.Name = "테스트용ToolStripMenuItem"
-        Me.테스트용ToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.테스트용ToolStripMenuItem.Text = "테스트용"
         '
         'Form1
         '
